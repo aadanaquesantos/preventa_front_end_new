@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/commonColorWhite">
+<!--    <include layout="@layout/layout_background" />-->
+
+    <FrameLayout
+        android:id="@+id/fragmentContainer"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
+    <LinearLayout
+        android:id="@+id/fixedSubmitButtonlayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:layout_gravity="center|bottom"
+        android:background="@color/transparent"
+        android:orientation="vertical"
+        >
+
+        <TextView
+            android:id="@+id/submit_users_btn"
+            android:layout_width="match_parent"
+            android:layout_height="20dp"
+
+            android:gravity="center"
+            android:letterSpacing="0.07"
+            android:lineSpacingExtra="0sp"
+            android:text="Powered by Digitalink-A"
+            android:textAlignment="center"
+            android:textAppearance="@style/TextAppearance.AppCompat.Subhead"
+            android:textColor="#757575"
+            android:textSize="12sp"
+            android:textStyle="bold" />
+    </LinearLayout>
+</androidx.coordinatorlayout.widget.CoordinatorLayout>
