@@ -25,8 +25,7 @@ import com.digital.inka.preventa.model.UserResponse;
 import com.digital.inka.preventa.util.TransformacionPunto;
 import com.google.android.material.button.MaterialButton;
 import com.google.android.material.textfield.TextInputLayout;
-import com.tomergoldst.tooltips.ToolTip;
-import com.tomergoldst.tooltips.ToolTipsManager;
+
 
 
 import retrofit2.Call;
@@ -36,25 +35,17 @@ import retrofit2.Response;
 import static com.digital.inka.preventa.model.Constants.Config.BASE_URL;
 
 
-/**
- * A simple {@link Fragment} subclass.
- * Use the {@link LoginFragment#newInstance} factory method to
- * create an instance of this fragment.
- */
 public class LoginFragment extends Fragment {
 
-
-    EditText etUserEmail;
-    EditText etPassword;
-    TextView btnSignUp;
-    MaterialButton btnSignIn;
-    ImageButton btnStatusEmail;
-    ToolTipsManager mToolTipsManager;
-    ConstraintLayout rootUserEmail;
-    ToolTip.Builder builder;
-    ImageButton btnStatusPass;
-   TextInputLayout ilUserEmail;
-    TextInputLayout ilPassword;
+    private EditText etUserEmail;
+    private EditText etPassword;
+    private TextView btnSignUp;
+    private MaterialButton btnSignIn;
+    private ImageButton btnStatusEmail;
+    private ConstraintLayout rootUserEmail;
+    private ImageButton btnStatusPass;
+    private TextInputLayout ilUserEmail;
+    private TextInputLayout ilPassword;
     private String username="";
     private String password="";
     private String mensaje="";
@@ -96,7 +87,6 @@ public class LoginFragment extends Fragment {
         start = etPassword.getSelectionStart();
         end = etPassword.getSelectionEnd();
         etPassword.setTransformationMethod(HideReturnsTransformationMethod.getInstance());
-      mToolTipsManager.dismiss(R.id.btnStatusPass);
         btnStatusEmail.setVisibility(View.GONE);
       ilPassword.setEndIconCheckable(false);
        ilPassword.setEndIconDrawable(R.drawable.openeye);
@@ -108,7 +98,6 @@ public class LoginFragment extends Fragment {
         start = etPassword.getSelectionStart();
         end = etPassword.getSelectionEnd();
         etPassword.setTransformationMethod(new TransformacionPunto());
-        mToolTipsManager.dismiss(R.id.btnStatusPass);
       btnStatusEmail.setVisibility(View.GONE);
       ilPassword.setEndIconCheckable(true);
       ilPassword.setEndIconDrawable(R.drawable.closeeye);
@@ -131,18 +120,17 @@ public class LoginFragment extends Fragment {
 
             }
         });
-        etUserEmail.setOnFocusChangeListener(new View.OnFocusChangeListener() {
-            @Override
-            public void onFocusChange(View v, boolean hasFocus) {
-                if (hasFocus) {
-                     mToolTipsManager.dismissAll();
-                }
-            }
-        });
+//        etUserEmail.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+//            @Override
+//            public void onFocusChange(View v, boolean hasFocus) {
+//                if (hasFocus) {
+//                    validateUserEmail();
+//                }
+//            }
+//        });
         etUserEmail.addTextChangedListener(new TextWatcher() {
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-                //here is your code
                validateUserEmail();
             }
 
@@ -193,8 +181,6 @@ public class LoginFragment extends Fragment {
         View rootView = inflater.inflate(R.layout.fragment_login, container, false);
        bind(rootView);
        events();
-        mToolTipsManager = new ToolTipsManager();
-        mToolTipsManager.findAndDismiss(btnStatusEmail);
         populateUserOk(username,password,mensaje);
         return rootView;
     }
@@ -259,19 +245,13 @@ public class LoginFragment extends Fragment {
         boolean band = true;
         String emailUserText = etUserEmail.getText().toString().trim();
         if (emailUserText.isEmpty()) {
-            //ilUserEmail.setError("ingrese usuario");
+            ilUserEmail.setError(getResources().getString(R.string.errorUserEmail));
              btnStatusEmail.setImageResource(R.drawable.ic_error_outline);
              btnStatusEmail.setVisibility(View.VISIBLE);
-             btnStatusEmail.setColorFilter(ContextCompat.getColor(getContext(), R.color.colorPrimary), android.graphics.PorterDuff.Mode.SRC_IN);
-            builder = new ToolTip.Builder(getContext(), btnStatusEmail, rootUserEmail, "Ingrese usuario o email!", ToolTip.POSITION_ABOVE);
-            builder.setGravity(ToolTip.GRAVITY_CENTER);
-           // builder.setTextAppearance(R.style.TooltipTextAppearance);
-            builder.setAlign(ToolTip.ALIGN_CENTER);
-            mToolTipsManager.show(builder.build());
+             btnStatusEmail.setColorFilter(ContextCompat.getColor(getContext(), R.color.error_stroke_color), android.graphics.PorterDuff.Mode.SRC_IN);
             band = false;
         } else {
-            //ilUserEmail.setError(null);
-             mToolTipsManager.dismiss(R.id.btnStatusEmail);
+            ilUserEmail.setError(null);
             btnStatusEmail.setVisibility(View.GONE);
         }
         return band;
@@ -282,18 +262,13 @@ public class LoginFragment extends Fragment {
         boolean band = true;
         String passwordText = etPassword.getText().toString().trim();
         if (passwordText.isEmpty()) {
-
+                ilPassword.setError(getResources().getString(R.string.errorClave));
                  btnStatusPass.setImageResource(R.drawable.ic_error_outline);
                  btnStatusPass.setVisibility(View.VISIBLE);
-                 btnStatusPass.setColorFilter(ContextCompat.getColor(getContext(), R.color.colorPrimary), android.graphics.PorterDuff.Mode.SRC_IN);
-            builder = new ToolTip.Builder(getContext(), btnStatusPass, rootUserEmail, "Ingrese su clave!", ToolTip.POSITION_ABOVE);
-            builder.setGravity(ToolTip.GRAVITY_CENTER);
-            //builder.setTextAppearance(R.style.TooltipTextAppearance);
-            builder.setAlign(ToolTip.ALIGN_CENTER);
-            mToolTipsManager.show(builder.build());
+                 btnStatusPass.setColorFilter(ContextCompat.getColor(getContext(), R.color.error_stroke_color), android.graphics.PorterDuff.Mode.SRC_IN);
             band = false;
         } else {
-      mToolTipsManager.dismiss(R.id.btnStatusPass);
+            ilPassword.setError(null);
              btnStatusPass.setVisibility(View.GONE);
 
         }
@@ -306,33 +281,24 @@ public class LoginFragment extends Fragment {
         String emailUserText = etUserEmail.getText().toString().trim();
         String passwordText = etPassword.getText().toString().trim();
         if (emailUserText.isEmpty()) {
-            //ilUserEmail.setError("ddddddddddddddddd");
+            ilUserEmail.setError(getResources().getString(R.string.errorUserEmail));
             btnStatusEmail.setImageResource(R.drawable.ic_error_outline);
             btnStatusEmail.setVisibility(View.VISIBLE);
-            btnStatusEmail.setColorFilter(ContextCompat.getColor(getContext(), R.color.colorPrimary), android.graphics.PorterDuff.Mode.SRC_IN);
-            builder = new ToolTip.Builder(getContext(), btnStatusEmail, rootUserEmail, "Ingrese usuario o email!", ToolTip.POSITION_ABOVE);
-            builder.setGravity(ToolTip.GRAVITY_CENTER);
-           // builder.setTextAppearance(R.style.TooltipTextAppearance);
-            builder.setAlign(ToolTip.ALIGN_CENTER);
-            mToolTipsManager.show(builder.build());
+            btnStatusEmail.setColorFilter(ContextCompat.getColor(getContext(), R.color.error_stroke_color), android.graphics.PorterDuff.Mode.SRC_IN);
             band = false;
         } else {
-           // ilUserEmail.setError(null);
-           mToolTipsManager.dismiss(R.id.btnStatusEmail);
+         ilUserEmail.setError(null);
            btnStatusEmail.setVisibility(View.GONE);
         }
         if (passwordText.isEmpty()) {
+            ilPassword.setError(getResources().getString(R.string.errorClave));
              btnStatusPass.setImageResource(R.drawable.ic_error_outline);
              btnStatusPass.setVisibility(View.VISIBLE);
-            btnStatusPass.setColorFilter(ContextCompat.getColor(getContext(), R.color.colorPrimary), android.graphics.PorterDuff.Mode.SRC_IN);
-            builder = new ToolTip.Builder(getContext(), btnStatusPass, rootUserEmail, "Ingrese su clave!", ToolTip.POSITION_ABOVE);
-            builder.setGravity(ToolTip.GRAVITY_CENTER);
-            //builder.setTextAppearance(R.style.TooltipTextAppearance);
-            builder.setAlign(ToolTip.ALIGN_CENTER);
-            mToolTipsManager.show(builder.build());
+            btnStatusPass.setColorFilter(ContextCompat.getColor(getContext(), R.color.error_stroke_color), android.graphics.PorterDuff.Mode.SRC_IN);
+
             band = false;
         } else {
-            mToolTipsManager.dismiss(R.id.btnStatusPass);
+
           btnStatusPass.setVisibility(View.GONE);
 
         }

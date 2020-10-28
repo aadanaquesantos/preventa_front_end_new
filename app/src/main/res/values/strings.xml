@@ -1,3 +1,10 @@
 <resources>
     <string name="app_name">preventa</string>
+    <string name="tvBienvenida">Bienvenid@ a</string>
+    <string name="hintUserEmail">Ingrese usuario o email</string>
+    <string name="txtSignIn">Ingresar</string>
+    <string name="errorClave">Ingrese clave</string>
+    <string name="errorUserEmail">Ingrese usuario o email</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

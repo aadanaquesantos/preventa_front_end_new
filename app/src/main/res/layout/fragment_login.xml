@@ -6,6 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
+    android:background="@drawable/fondologin"
     tools:ignore="MissingPrefix">
 
     <LinearLayout
@@ -31,15 +32,13 @@
                 android:paddingBottom="@dimen/spacing_large">
 
                 <TextView
-                    android:id="@+id/textView3"
+                    android:id="@+id/tvBienvenida"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_horizontal"
-                    android:layout_marginTop="16dp"
-
-                    android:text="Bienvenid@ a"
-                    android:textColor="#000000"
-                    android:textSize="20sp"
+                    android:layout_marginTop="@dimen/_16sdp"
+                   style="@style/tvTitle"
+                    android:text="@string/tvBienvenida"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
@@ -66,13 +65,13 @@
                     android:layout_marginStart="@dimen/spacing_standard"
                     android:layout_marginTop="@dimen/spacing_smlarge"
                     android:layout_marginEnd="@dimen/spacing_standard"
-                    android:background="@drawable/bg_ractangle_rounded">
+                    android:background="@drawable/bg_ractangle_rounded_inactive">
 
-                    <com.google.android.material.textfield.TextInputLayout
+                    <com.digital.inka.preventa.widget.RoundedBorderedTextInputLayout
                         android:id="@+id/ilUserEmail"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        app:hintEnabled="false">
+                        app:hintEnabled="false"  >
 
                         <EditText
                             android:id="@+id/etUserEmail"
@@ -83,21 +82,22 @@
                             android:layout_alignParentLeft="true"
                             android:layout_toStartOf="@id/btnStatusEmail"
                             android:layout_toLeftOf="@id/btnStatusEmail"
-                            android:drawableTint="@color/colorPrimary"
-                            android:hint="Ingrese usuario o email"
+                            android:drawableTint="@color/error_stroke_color"
+                            android:hint="@string/hintUserEmail"
                             android:inputType="text"
                             android:singleLine="true" />
-                    </com.google.android.material.textfield.TextInputLayout>
+
+                    </com.digital.inka.preventa.widget.RoundedBorderedTextInputLayout>
 
                     <ImageButton
                         android:id="@+id/btnStatusEmail"
-                        android:layout_width="wrap_content"
-                        android:layout_height="match_parent"
+                        android:layout_width="59dp"
+                        android:layout_height="wrap_content"
                         android:layout_alignParentEnd="true"
                         android:layout_alignParentRight="true"
-                        android:paddingEnd="@dimen/spacing_xlarge"
-                        android:paddingRight="@dimen/spacing_middle"
-                         android:textColor="@color/colorPrimary"
+                        android:layout_marginEnd="30dp"
+                        android:layout_marginRight="30dp"
+                        android:textColor="@color/error_stroke_color"
                         android:textSize="@dimen/font_size_medium"
                         android:theme="@style/Widget.MaterialComponents.Button.TextButton"
                         android:tint="@color/green_400"
@@ -115,7 +115,7 @@
                     android:layout_marginEnd="@dimen/spacing_standard"
                     android:background="@drawable/bg_ractangle_rounded_inactive">
 
-                    <com.google.android.material.textfield.TextInputLayout
+                    <com.digital.inka.preventa.widget.RoundedBorderedTextInputLayout
                         android:id="@+id/ilPassword"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -131,23 +131,20 @@
                             android:layout_alignParentStart="true"
                             android:layout_alignParentLeft="true"
                             android:layout_toStartOf="@id/btnStatusPass"
-                            android:drawableTint="@color/colorPrimary"
-
+                            android:drawableTint="@color/error_stroke_color"
                             android:inputType="textPassword"
                             android:singleLine="true" />
-                    </com.google.android.material.textfield.TextInputLayout>
+                    </com.digital.inka.preventa.widget.RoundedBorderedTextInputLayout>
 
                     <ImageButton
                         android:id="@+id/btnStatusPass"
-
-                        android:layout_width="wrap_content"
+                        android:layout_width="74dp"
                         android:layout_height="match_parent"
                         android:layout_alignParentEnd="true"
                         android:layout_alignParentRight="true"
                         android:paddingEnd="@dimen/spacing_xlarge"
                         android:paddingRight="@dimen/spacing_middle"
-
-                        android:textColor="@color/colorPrimary"
+                        android:textColor="@color/error_stroke_color"
                         android:textSize="@dimen/font_size_medium"
                         android:theme="@style/Widget.MaterialComponents.Button.TextButton"
                         android:tint="@color/green_400"
@@ -163,27 +160,9 @@
                     android:layout_marginStart="@dimen/spacing_standard"
                     android:layout_marginTop="@dimen/spacing_mxlarge"
                     android:layout_marginEnd="@dimen/spacing_standard"
-                    android:text="a" />
+                    android:text="@string/txtSignIn" />
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="@dimen/spacing_standard_new"
-                    android:layout_marginLeft="@dimen/spacing_standard_new"
-                    android:layout_marginTop="@dimen/spacing_xlarge"
-                    android:layout_marginEnd="@dimen/spacing_standard"
-                    android:layout_marginRight="@dimen/spacing_standard"
-                    android:text="sign in"
-                    android:textColor="@color/black"
-                    android:textSize="@dimen/font_size_small"
-                    android:visibility="gone" />
 
-                <RelativeLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent">
-
-<!--                    <include layout="@layout/layout_login_bottom" />-->
-                </RelativeLayout>
 
 
             </LinearLayout>

@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/goHome"
+        android:icon="@drawable/icon_dash_home"
+        android:title="Inicio" />
+
+
+    <item
+        android:id="@+id/goCustomer"
+        android:iconTint="@color/tab_home_active"
+        android:icon="@drawable/list_customer"
+        android:title="Clientes" />
+
+    <item
+        android:id="@+id/goArticles"
+        android:iconTint="@color/tab_home_active"
+        android:icon="@drawable/article"
+        android:title="Precios" />
+
+    <item
+        android:id="@+id/goGifts"
+        android:iconTint="@color/tab_home_active"
+        android:icon="@drawable/bonif"
+        android:title="Bonificaciones" />
+    <item
+        android:id="@+id/goPerfil"
+        android:icon="@drawable/yo"
+        android:title="Yo" />
+
+
+
+</menu>

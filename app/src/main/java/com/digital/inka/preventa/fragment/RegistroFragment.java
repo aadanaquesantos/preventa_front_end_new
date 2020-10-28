@@ -17,8 +17,7 @@ import com.digital.inka.preventa.model.User;
 import com.digital.inka.preventa.model.UserResponse;
 import com.google.android.material.button.MaterialButton;
 
-import com.tomergoldst.tooltips.ToolTip;
-import com.tomergoldst.tooltips.ToolTipsManager;
+
 
 
 import java.util.HashMap;
@@ -49,8 +48,7 @@ public class RegistroFragment extends Fragment {
     EditText etEmail;
     EditText etPassword;
     EditText etRePassword;
-    ToolTipsManager mToolTipsManager;
-    ToolTip.Builder builder;
+
     RelativeLayout rootSignUp;
     EditText etCelular;
 
@@ -128,7 +126,7 @@ public class RegistroFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 if(validateDni()){
-                    mToolTipsManager.dismissAll();
+
                     callRestUserByEmail();
                 }
 
@@ -205,7 +203,7 @@ public class RegistroFragment extends Fragment {
         View rootView = inflater.inflate(R.layout.fragment_registro, container, false);
          bind(rootView);
         events();
-        mToolTipsManager = new ToolTipsManager();
+
         return rootView;
     }
 
@@ -270,14 +268,10 @@ public class RegistroFragment extends Fragment {
         boolean band=true;
         String dniText=etDni.getText().toString().trim();
         if(dniText.isEmpty()){
-            builder = new ToolTip.Builder(getContext(), etDni, rootSignUp, "Ingrese un Dni!", ToolTip.POSITION_ABOVE);
-            builder.setGravity(ToolTip.GRAVITY_CENTER);
-           // builder.setTextAppearance(R.style.TooltipTextAppearance);
-            builder.setAlign(ToolTip.ALIGN_CENTER);
-            mToolTipsManager.show(builder.build());
+
             band=false;
         }else{
-            mToolTipsManager.dismiss(R.id.etDni);
+
         }
         return band;
     }
@@ -288,57 +282,37 @@ public class RegistroFragment extends Fragment {
         String rePasswordText=etRePassword.getText().toString().trim();
         String celularText=etCelular.getText().toString().trim();
         if(dniText.isEmpty()){
-            builder = new ToolTip.Builder(getContext(), etDni, rootSignUp, "Ingrese Dni!", ToolTip.POSITION_ABOVE);
-            builder.setGravity(ToolTip.GRAVITY_CENTER);
-           // builder.setTextAppearance(R.style.TooltipTextAppearance);
-            builder.setAlign(ToolTip.ALIGN_CENTER);
-            mToolTipsManager.show(builder.build());
+
             band=false;
         }else{
-            mToolTipsManager.dismiss(R.id.etDni);
+
         }
         if(passwordText.isEmpty()){
-            builder = new ToolTip.Builder(getContext(), etPassword, rootSignUp, "Ingrese  clave!", ToolTip.POSITION_ABOVE);
-            builder.setGravity(ToolTip.GRAVITY_CENTER);
-            //builder.setTextAppearance(R.style.TooltipTextAppearance);
-            builder.setAlign(ToolTip.ALIGN_CENTER);
-            mToolTipsManager.show(builder.build());
+
             band=false;
         }else{
-            mToolTipsManager.dismiss(R.id.etPassword);
+
         }
 
         if(rePasswordText.isEmpty()){
-            builder = new ToolTip.Builder(getContext(), etRePassword, rootSignUp, "Repita la  clave!", ToolTip.POSITION_ABOVE);
-            builder.setGravity(ToolTip.GRAVITY_CENTER);
-           // builder.setTextAppearance(R.style.TooltipTextAppearance);
-            builder.setAlign(ToolTip.ALIGN_CENTER);
-            mToolTipsManager.show(builder.build());
+
             band=false;
         }else{
-            mToolTipsManager.dismiss(R.id.etRePassword);
+
         }
 
         if(celularText.isEmpty()){
-            builder = new ToolTip.Builder(getContext(), etCelular, rootSignUp, "Ingrese número de celular!", ToolTip.POSITION_ABOVE);
-            builder.setGravity(ToolTip.GRAVITY_CENTER);
-           // builder.setTextAppearance(R.style.TooltipTextAppearance);
-            builder.setAlign(ToolTip.ALIGN_CENTER);
-            mToolTipsManager.show(builder.build());
+
             band=false;
         }else{
-            mToolTipsManager.dismiss(R.id.etCelular);
+
         }
         //if(!etPassword.getText().toString().isEmpty() && !!etRePassword.getText().toString().isEmpty() ){
             if(!validateEqualsRePass(passwordText,rePasswordText)){
-                builder = new ToolTip.Builder(getContext(), etRePassword, rootSignUp, "Claves no coinciden!!", ToolTip.POSITION_ABOVE);
-                builder.setGravity(ToolTip.GRAVITY_CENTER);
-              //  builder.setTextAppearance(R.style.TooltipTextAppearance);
-                builder.setAlign(ToolTip.ALIGN_CENTER);
-                mToolTipsManager.show(builder.build());
+
                 band=false;
             }else{
-                mToolTipsManager.dismiss(R.id.etRePassword);
+
             }
        // }
 

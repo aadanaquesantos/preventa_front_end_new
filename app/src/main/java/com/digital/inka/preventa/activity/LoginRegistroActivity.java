@@ -9,13 +9,13 @@ import com.digital.inka.preventa.fragment.RegistroFragment;
 
 
 public class LoginRegistroActivity extends BaseActivity {
-    LoginFragment loginFragment=new LoginFragment();
-    RegistroFragment registroFragment=new RegistroFragment();
+    LoginFragment loginFragment = new LoginFragment();
+    RegistroFragment registroFragment = new RegistroFragment();
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login_registro);
-
         loginFragment = (LoginFragment) getSupportFragmentManager().findFragmentById(R.id.fragmentContainer);
         if (loginFragment == null) {
             loginFragment = LoginFragment.newInstance();
@@ -23,7 +23,6 @@ public class LoginRegistroActivity extends BaseActivity {
                     .beginTransaction()
                     .add(R.id.fragmentContainer, loginFragment).addToBackStack(null)
                     .commit();
-
         }
     }
 
@@ -33,8 +32,7 @@ public class LoginRegistroActivity extends BaseActivity {
     }
 
     public void loadRegistroFragment() {
-         if (registroFragment.isAdded()) {
-
+        if (registroFragment.isAdded()) {
             getSupportFragmentManager()
                     .beginTransaction()
                     .replace(R.id.fragmentContainer, registroFragment).addToBackStack(null)
@@ -48,8 +46,8 @@ public class LoginRegistroActivity extends BaseActivity {
     }
 
     public void loadLoginFragment() {
-         if (loginFragment.isAdded()) {
-             getSupportFragmentManager()
+        if (loginFragment.isAdded()) {
+            getSupportFragmentManager()
                     .beginTransaction()
                     .replace(R.id.fragmentContainer, loginFragment).addToBackStack(null)
                     .commit();
@@ -60,13 +58,13 @@ public class LoginRegistroActivity extends BaseActivity {
                     .commit();
         }
     }
-    public void loadLoginFragmentConParametros(Bundle argumentos) {
-        loginFragment=new LoginFragment();
-            loginFragment.setArguments(argumentos);
-            getSupportFragmentManager()
-                    .beginTransaction()
-                    .add(R.id.fragmentContainer, loginFragment).addToBackStack(null)
-                    .commit();
 
+    public void loadLoginFragmentConParametros(Bundle argumentos) {
+        loginFragment = new LoginFragment();
+        loginFragment.setArguments(argumentos);
+        getSupportFragmentManager()
+                .beginTransaction()
+                .add(R.id.fragmentContainer, loginFragment).addToBackStack(null)
+                .commit();
     }
 }
