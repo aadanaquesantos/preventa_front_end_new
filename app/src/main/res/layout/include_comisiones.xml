@@ -81,7 +81,7 @@
     </RelativeLayout>
 
     <com.google.android.material.button.MaterialButton
-        android:id="@+id/imageView11"
+        android:id="@+id/btnGo"
         style="@style/MaterialButtonStyle.Icon"
         android:layout_width="30dp"
         android:layout_height="30dp"
@@ -100,12 +100,11 @@
 
     <TextView
         android:id="@+id/tvTitleAvance"
-        style="@style/styleSubTitleHome"
+        style="@style/titleMenu"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
         android:layout_marginBottom="32dp"
-        android:fontFamily="@font/poppins_bold"
         android:text="Comisiones"
         CircleProgressView:layout_constraintBottom_toTopOf="@+id/imageView5"
         CircleProgressView:layout_constraintEnd_toEndOf="parent"

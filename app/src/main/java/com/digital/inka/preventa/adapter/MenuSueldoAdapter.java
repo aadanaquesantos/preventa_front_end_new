@@ -17,6 +17,7 @@ import com.digital.inka.preventa.fragment.MenuAvancePorProveedorFragment;
 import com.digital.inka.preventa.fragment.MenuAvanceVentasFragment;
 import com.digital.inka.preventa.fragment.MenuSueldoBasicoFragment;
 import com.digital.inka.preventa.fragment.MenuSueldoComisionesFragment;
+import com.digital.inka.preventa.fragment.MenuSueldoHistoricoFragment;
 import com.digital.inka.preventa.fragment.MenuSueldoIncentivosFragment;
 import com.digital.inka.preventa.model.MenuDashboard;
 import com.digital.inka.preventa.util.ViewIdGenerator;
@@ -72,6 +73,16 @@ public class MenuSueldoAdapter extends RecyclerView.Adapter<MenuSueldoAdapter.Me
                 menuSueldoIncentivosFragment = MenuSueldoIncentivosFragment.newInstance();
                 fm .beginTransaction()
                         .add(newContainerId, menuSueldoIncentivosFragment).addToBackStack(null)
+                        .commit();
+            }
+
+        }else if(producto.getCodMenu().equals("06")){
+            holder.containerMenuVenta.setId(newContainerId);// Set container id
+            MenuSueldoHistoricoFragment menuSueldoHistoricoFragment = (MenuSueldoHistoricoFragment) fm.findFragmentById(newContainerId);
+            if (menuSueldoHistoricoFragment == null) {
+                menuSueldoHistoricoFragment = MenuSueldoHistoricoFragment.newInstance();
+                fm .beginTransaction()
+                        .add(newContainerId, menuSueldoHistoricoFragment).addToBackStack(null)
                         .commit();
             }
 

@@ -86,6 +86,7 @@ public class HomeFragment extends Fragment {
         menuVentas.add(new MenuDashboard("03","Pizza Clásica","Salsa clásica de la casa","$",new Double(12.58),R.drawable.pizza_clasica));
         menuVentas.add(new MenuDashboard("04","Hamburguesa mix","Doble carne con queso","$",new Double(12.58),R.drawable.hamburguesa_mix_img));
         menuVentas.add(new MenuDashboard("05","Hamburguesa mix","Doble carne con queso","$",new Double(12.58),R.drawable.hamburguesa_mix_img));
+        menuVentas.add(new MenuDashboard("06","Hamburguesa mix","Doble carne con queso","$",new Double(12.58),R.drawable.hamburguesa_mix_img));
 
         menuSueldoAdapter=new MenuSueldoAdapter(getContext(),menuVentas);
         rvMenuSueldo.setAdapter(menuSueldoAdapter);

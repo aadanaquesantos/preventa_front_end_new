@@ -13,7 +13,8 @@
      android:layout_margin="@dimen/_12sdp"
      android:elevation="@dimen/_5sdp"
      app:cardCornerRadius="@dimen/_10sdp"
-     app:cardElevation="@dimen/_10sdp">
+     app:cardElevation="@dimen/_10sdp"
+      >
 
   <androidx.cardview.widget.CardView
       android:id="@+id/cvCategoria"
@@ -70,14 +71,12 @@
 
      <ImageView
          android:id="@+id/progressBar"
-       android:src="@drawable/by_proveedor"
+         android:src="@drawable/historico"
          android:layout_width="@dimen/_60sdp"
          android:layout_height="@dimen/_60sdp"
          android:layout_centerInParent="true"
 
          />
-
-
     </RelativeLayout>
 
     <com.google.android.material.button.MaterialButton
@@ -105,7 +104,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
         android:layout_marginBottom="32dp"
-        android:text="Por proveedor"
+        android:text="Históricos"
         CircleProgressView:layout_constraintBottom_toTopOf="@+id/imageView5"
         CircleProgressView:layout_constraintEnd_toEndOf="parent"
         CircleProgressView:layout_constraintStart_toStartOf="parent"

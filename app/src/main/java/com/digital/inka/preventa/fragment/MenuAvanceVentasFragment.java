@@ -12,6 +12,9 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.digital.inka.R;
+import com.digital.inka.preventa.activity.ContenedorActivity;
+import com.digital.inka.preventa.activity.LoginRegistroActivity;
+import com.google.android.material.button.MaterialButton;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -20,15 +23,11 @@ import com.digital.inka.R;
  */
 public class MenuAvanceVentasFragment extends Fragment {
 
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-    private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
-
     private TextView txtProgress;
     private ProgressBar progressBar;
     private int pStatus = 0;
     private Handler handler = new Handler();
+    private MaterialButton btnGo;
 
     public MenuAvanceVentasFragment() {
         // Required empty public constructor
@@ -43,10 +42,6 @@ public class MenuAvanceVentasFragment extends Fragment {
     // TODO: Rename and change types and number of parameters
     public static MenuAvanceVentasFragment newInstance() {
       MenuAvanceVentasFragment fragment = new MenuAvanceVentasFragment();
-//        Bundle args = new Bundle();
-//        args.putString(ARG_PARAM1, param1);
-//        args.putString(ARG_PARAM2, param2);
-//        fragment.setArguments(args);
         return fragment;
     }
 
@@ -66,6 +61,7 @@ View view=inflater.inflate(R.layout.fragment_menu_venta, container, false);
 
         txtProgress = (TextView) view.findViewById(R.id.txtProgress);
         progressBar = (ProgressBar) view.findViewById(R.id.progressBar);
+        btnGo=(MaterialButton)view.findViewById(R.id.btnGo);
 
         new Thread(new Runnable() {
             @Override
@@ -87,6 +83,14 @@ View view=inflater.inflate(R.layout.fragment_menu_venta, container, false);
                 }
             }
         }).start();
+
+
+        btnGo.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                ((ContenedorActivity) getActivity()).loadAvanceFragment();
+            }
+        });
         return view;
     }
 }
