@@ -20,6 +20,7 @@ import com.digital.inka.preventa.fragment.MenuSueldoComisionesFragment;
 import com.digital.inka.preventa.fragment.MenuSueldoHistoricoFragment;
 import com.digital.inka.preventa.fragment.MenuSueldoIncentivosFragment;
 import com.digital.inka.preventa.model.MenuDashboard;
+import com.digital.inka.preventa.model.SueldoResponse;
 import com.digital.inka.preventa.util.ViewIdGenerator;
 
 import java.util.ArrayList;
@@ -27,10 +28,12 @@ import java.util.ArrayList;
 public class MenuSueldoAdapter extends RecyclerView.Adapter<MenuSueldoAdapter.MenuVentaViewHolder> {
     ArrayList<MenuDashboard> menuVentaList=new ArrayList<>();
     Context context;
+    SueldoResponse sueldoResponse;
 
-    public MenuSueldoAdapter(Context context, ArrayList<MenuDashboard> menuVentaList) {
+    public MenuSueldoAdapter(Context context, ArrayList<MenuDashboard> menuVentaList, SueldoResponse sueldoResponse) {
         this.menuVentaList = menuVentaList;
         this.context=context;
+        this.sueldoResponse=sueldoResponse;
     }
 
     @NonNull
@@ -50,7 +53,7 @@ public class MenuSueldoAdapter extends RecyclerView.Adapter<MenuSueldoAdapter.Me
             holder.containerMenuVenta.setId(newContainerId);// Set container id
             MenuSueldoBasicoFragment menuSueldoBasicoFragment = (MenuSueldoBasicoFragment) fm.findFragmentById(newContainerId);
             if (menuSueldoBasicoFragment == null) {
-                menuSueldoBasicoFragment = MenuSueldoBasicoFragment.newInstance();
+                menuSueldoBasicoFragment = MenuSueldoBasicoFragment.newInstance(sueldoResponse.getSueldo());
                 fm .beginTransaction()
                         .add(newContainerId, menuSueldoBasicoFragment).addToBackStack(null)
                         .commit();

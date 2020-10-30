@@ -42,6 +42,13 @@ data class CustomerListResponse(
         var customers: ArrayList<Customer>? = null
 )
 
+data class SueldoResponse(
+        var sueldo:Double,
+        var cuota:Double,
+        var avanceCuota:Double,
+        var status:StatusResponse
+)
+
 
 data class MenuDashboard(
         var codMenu:String,

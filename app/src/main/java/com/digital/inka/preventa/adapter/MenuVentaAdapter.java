@@ -21,17 +21,20 @@ import com.digital.inka.preventa.fragment.LoginFragment;
 import com.digital.inka.preventa.fragment.MenuAvancePorProveedorFragment;
 import com.digital.inka.preventa.fragment.MenuAvanceVentasFragment;
 import com.digital.inka.preventa.model.MenuDashboard;
- import com.digital.inka.preventa.util.ViewIdGenerator;
+import com.digital.inka.preventa.model.SueldoResponse;
+import com.digital.inka.preventa.util.ViewIdGenerator;
 
 import java.util.ArrayList;
 
 public class MenuVentaAdapter extends RecyclerView.Adapter<MenuVentaAdapter.MenuVentaViewHolder> {
     ArrayList<MenuDashboard> menuVentaList=new ArrayList<>();
     Context context;
+    SueldoResponse sueldoResponse;
 
-    public MenuVentaAdapter(Context context, ArrayList<MenuDashboard> menuVentaList) {
+    public MenuVentaAdapter(Context context, ArrayList<MenuDashboard> menuVentaList, SueldoResponse sueldoResponse) {
         this.menuVentaList = menuVentaList;
         this.context=context;
+        this.sueldoResponse=sueldoResponse;
     }
 
     @NonNull
@@ -51,7 +54,7 @@ public class MenuVentaAdapter extends RecyclerView.Adapter<MenuVentaAdapter.Menu
             holder.containerMenuVenta.setId(newContainerId);// Set container id
             MenuAvanceVentasFragment  menuAvanceVentasFragment = (MenuAvanceVentasFragment) fm.findFragmentById(newContainerId);
             if (menuAvanceVentasFragment == null) {
-                menuAvanceVentasFragment = MenuAvanceVentasFragment.newInstance();
+                menuAvanceVentasFragment = MenuAvanceVentasFragment.newInstance(sueldoResponse.getAvanceCuota());
                 fm .beginTransaction()
                         .add(newContainerId, menuAvanceVentasFragment).addToBackStack(null)
                         .commit();

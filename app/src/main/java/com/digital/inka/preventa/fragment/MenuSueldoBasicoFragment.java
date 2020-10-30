@@ -11,6 +11,23 @@ import android.widget.TextView;
 import androidx.fragment.app.Fragment;
 
 import com.digital.inka.R;
+import com.digital.inka.preventa.activity.ContenedorActivity;
+import com.digital.inka.preventa.activity.LoginRegistroActivity;
+import com.digital.inka.preventa.api.ApiRetrofitShort;
+import com.digital.inka.preventa.model.StatusResponse;
+import com.digital.inka.preventa.model.SueldoResponse;
+import com.digital.inka.preventa.model.User;
+import com.digital.inka.preventa.model.UserRequest;
+import com.digital.inka.preventa.model.UserResponse;
+
+import java.util.HashMap;
+import java.util.Map;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+
+import static com.digital.inka.preventa.model.Constants.Config.BASE_URL;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -28,6 +45,8 @@ public class MenuSueldoBasicoFragment extends Fragment {
     private ProgressBar progressBar;
     private int pStatus = 0;
     private Handler handler = new Handler();
+    private TextView tvSueldo;
+     static String textoMontoSueldo;
 
     public MenuSueldoBasicoFragment() {
         // Required empty public constructor
@@ -40,9 +59,10 @@ public class MenuSueldoBasicoFragment extends Fragment {
      * @return A new instance of fragment MenuVentaFragment.
      */
     // TODO: Rename and change types and number of parameters
-    public static MenuSueldoBasicoFragment newInstance() {
+    public static MenuSueldoBasicoFragment newInstance(Double sueldo) {
       MenuSueldoBasicoFragment fragment = new MenuSueldoBasicoFragment();
-//        Bundle args = new Bundle();
+        textoMontoSueldo="S /. "+sueldo;
+//             Bundle args = new Bundle();
 //        args.putString(ARG_PARAM1, param1);
 //        args.putString(ARG_PARAM2, param2);
 //        fragment.setArguments(args);
@@ -61,9 +81,13 @@ public class MenuSueldoBasicoFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-View view=inflater.inflate(R.layout.fragment_menu_sueldo_basico, container, false);
+        View view=inflater.inflate(R.layout.fragment_menu_sueldo_basico, container, false);
+        tvSueldo=view.findViewById(R.id.tvSueldo);
+        tvSueldo.setText(textoMontoSueldo);
 
 
         return view;
     }
+
+
 }

@@ -2,6 +2,7 @@ package com.digital.inka.preventa.service;
 
 
 import com.digital.inka.preventa.model.StatusResponse;
+import com.digital.inka.preventa.model.SueldoResponse;
 import com.digital.inka.preventa.model.User;
 import com.digital.inka.preventa.model.UserResponse;
 
@@ -23,4 +24,8 @@ public interface UserService {
     Call<UserResponse> userByEmail(@QueryMap Map<String, String> parametros);
     @PUT("updateUserLogin")
     Call<StatusResponse> updateUserLogin(@Body User user);
+
+
+    @GET("getSueldo")
+    Call<SueldoResponse> getSueldo(@QueryMap Map<String, String> parametros);
 }

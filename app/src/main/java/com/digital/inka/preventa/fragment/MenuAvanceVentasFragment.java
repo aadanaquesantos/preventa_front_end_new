@@ -14,6 +14,8 @@ import android.widget.TextView;
 import com.digital.inka.R;
 import com.digital.inka.preventa.activity.ContenedorActivity;
 import com.digital.inka.preventa.activity.LoginRegistroActivity;
+import com.digital.inka.preventa.model.SueldoResponse;
+import com.digital.inka.preventa.util.UtilAndroid;
 import com.google.android.material.button.MaterialButton;
 
 /**
@@ -25,9 +27,10 @@ public class MenuAvanceVentasFragment extends Fragment {
 
     private TextView txtProgress;
     private ProgressBar progressBar;
-    private int pStatus = 0;
+    private Double pStatus = 0.0;
     private Handler handler = new Handler();
     private MaterialButton btnGo;
+    static Double porcentajeAvance;
 
     public MenuAvanceVentasFragment() {
         // Required empty public constructor
@@ -40,7 +43,8 @@ public class MenuAvanceVentasFragment extends Fragment {
      * @return A new instance of fragment MenuVentaFragment.
      */
     // TODO: Rename and change types and number of parameters
-    public static MenuAvanceVentasFragment newInstance() {
+    public static MenuAvanceVentasFragment newInstance(Double avanceCuota) {
+        porcentajeAvance=avanceCuota;
       MenuAvanceVentasFragment fragment = new MenuAvanceVentasFragment();
         return fragment;
     }
@@ -63,28 +67,29 @@ View view=inflater.inflate(R.layout.fragment_menu_venta, container, false);
         progressBar = (ProgressBar) view.findViewById(R.id.progressBar);
         btnGo=(MaterialButton)view.findViewById(R.id.btnGo);
 
-        new Thread(new Runnable() {
-            @Override
-            public void run() {
-                while (pStatus <= 100) {
-                    handler.post(new Runnable() {
-                        @Override
-                        public void run() {
-                            progressBar.setProgress(pStatus);
-                            txtProgress.setText(pStatus + " %");
-                        }
-                    });
-                    try {
-                        Thread.sleep(100);
-                    } catch (InterruptedException e) {
-                        e.printStackTrace();
-                    }
-                    pStatus++;
-                }
-            }
-        }).start();
+//        new Thread(new Runnable() {
+//            @Override
+//            public void run() {
+//                System.out.printf("total"+porcentajeAvance);
+//                while (pStatus <= porcentajeAvance) {
+//                    handler.post(new Runnable() {
+//                        @Override
+//                        public void run() {
+//                            progressBar.setProgress(pStatus);
+//                            txtProgress.setText(pStatus + " %");
+//                        }
+//                    });
+//                    try {
+//                        Thread.sleep(100);
+//                    } catch (InterruptedException e) {
+//                        e.printStackTrace();
+//                    }
+//                    pStatus=++;
+//                }
+//            }
+//        }).start();
 
-
+showProgressCuota(porcentajeAvance);
         btnGo.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -92,5 +97,30 @@ View view=inflater.inflate(R.layout.fragment_menu_venta, container, false);
             }
         });
         return view;
+    }
+
+    private void showProgressCuota(Double porcentajeAvance) {
+        pStatus = 0.0;
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                while (pStatus < porcentajeAvance) {
+                    pStatus += 0.1;
+                    try {
+                        Thread.sleep(1);
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+                    handler.post(new Runnable() {
+                        @Override
+                        public void run() {
+                            progressBar.setProgress(pStatus.intValue());
+                            txtProgress.setText(UtilAndroid.round(pStatus, 3) + "%");
+
+                        }
+                    });
+                }
+            }
+        }).start();
     }
 }
