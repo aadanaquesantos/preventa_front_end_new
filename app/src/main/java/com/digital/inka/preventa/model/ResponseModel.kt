@@ -1,6 +1,7 @@
 package com.digital.inka.preventa.model
 
 import java.util.*
+import kotlin.collections.ArrayList
 
 
 data class Product(
@@ -48,6 +49,55 @@ data class SueldoResponse(
         var avanceCuota:Double,
         var status:StatusResponse
 )
+
+
+data class AvanceResponse(
+        var totalDias:Int,
+        var restoDias:Int,
+        var avanceDias:Int,
+        var linealidad:Double,
+        var necesidadDiaria:Double,
+        var clientesAtendidos:Int,
+        var proyeccion:Double,
+        var status:StatusResponse
+)
+
+data class AvanceProveedor(
+        var codProveedor:String,
+        var descProveedor:String,
+        var avance:Double
+)
+
+data class AvanceProveedorListResponse(
+        var status:StatusResponse,
+        var avances: ArrayList<AvanceProveedor>? = null
+)
+
+
+data class AvancePoliticaListResponse(
+        var status:StatusResponse,
+        var avances: ArrayList<AvancePolitica>? = null
+)
+data class  AvancePolitica(
+        var codPolitica:String,
+        var descPolitica:String,
+        var montoPolitica:Double
+
+)
+
+
+data class PeriodoListResponse(
+        var status:StatusResponse,
+        var periodos:ArrayList<Periodo>?=null
+
+)
+data class Periodo(
+        var annio:String,
+        var description:String,
+        var startDate:String,
+        var endDate:String
+)
+
 
 
 data class MenuDashboard(

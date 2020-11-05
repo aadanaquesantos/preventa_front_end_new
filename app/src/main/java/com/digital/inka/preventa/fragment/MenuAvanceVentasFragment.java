@@ -61,35 +61,13 @@ public class MenuAvanceVentasFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-View view=inflater.inflate(R.layout.fragment_menu_venta, container, false);
+        View view=inflater.inflate(R.layout.fragment_menu_venta, container, false);
 
         txtProgress = (TextView) view.findViewById(R.id.txtProgress);
         progressBar = (ProgressBar) view.findViewById(R.id.progressBar);
         btnGo=(MaterialButton)view.findViewById(R.id.btnGo);
 
-//        new Thread(new Runnable() {
-//            @Override
-//            public void run() {
-//                System.out.printf("total"+porcentajeAvance);
-//                while (pStatus <= porcentajeAvance) {
-//                    handler.post(new Runnable() {
-//                        @Override
-//                        public void run() {
-//                            progressBar.setProgress(pStatus);
-//                            txtProgress.setText(pStatus + " %");
-//                        }
-//                    });
-//                    try {
-//                        Thread.sleep(100);
-//                    } catch (InterruptedException e) {
-//                        e.printStackTrace();
-//                    }
-//                    pStatus=++;
-//                }
-//            }
-//        }).start();
-
-showProgressCuota(porcentajeAvance);
+        showProgressCuota(porcentajeAvance);
         btnGo.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

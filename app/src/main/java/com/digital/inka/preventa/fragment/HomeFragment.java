@@ -1,9 +1,11 @@
 package com.digital.inka.preventa.fragment;
 
 import android.os.Bundle;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -15,9 +17,18 @@ import com.digital.inka.preventa.activity.ContenedorActivity;
 import com.digital.inka.preventa.adapter.MenuSueldoAdapter;
 import com.digital.inka.preventa.adapter.MenuVentaAdapter;
 import com.digital.inka.preventa.api.ApiRetrofitShort;
+import com.digital.inka.preventa.model.Constants;
 import com.digital.inka.preventa.model.MenuDashboard;
 import com.digital.inka.preventa.model.StatusResponse;
 import com.digital.inka.preventa.model.SueldoResponse;
+import com.rabbil.toastsiliconlibrary.ToastSilicon;
+import com.thecode.aestheticdialogs.AestheticDialog;
+import com.thecode.aestheticdialogs.DialogAnimation;
+import com.thecode.aestheticdialogs.DialogStyle;
+import com.thecode.aestheticdialogs.DialogType;
+import com.thecode.aestheticdialogs.OnDialogClickListener;
+
+import org.jetbrains.annotations.NotNull;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -45,8 +56,6 @@ public class HomeFragment extends Fragment {
     private RecyclerView rvMenuSueldo;
     MenuVentaAdapter menuVentaAdapter;
     MenuSueldoAdapter menuSueldoAdapter;
-
-
 
     public HomeFragment() {
         // Required empty public constructor
@@ -88,36 +97,28 @@ public class HomeFragment extends Fragment {
             @Override
             public void onResponse(Call<SueldoResponse> call, Response<SueldoResponse> response) {
                 StatusResponse statusResponse = response.body().getStatus();
-                if (statusResponse.getStatusCode().equals("1")) {
-//                    Double  sueldo = response.body().getSueldo();
-//                    Double cuota=response.body().getCuota();
-//                    Double avanceCuota=response.body().getAvanceCuota();
+                if (statusResponse.getStatusCode().equals(Constants.STATUS.SUCCESS)) {
+                    if(getActivity()==null){
+                        System.out.println(getActivity());
+                    }
+                    ((ContenedorActivity) getActivity()).showProgress(false);// verificar
                         loadMenus(response.body());
+                } else if (statusResponse.getStatusCode().equals(Constants.STATUS.WARNING)) {
+                    ((ContenedorActivity) getActivity()).showProgress(false);
+                    ToastSilicon.toastWarningOne(getActivity(),statusResponse.getStatusText(), Toast.LENGTH_SHORT);
+                    loadMenus(new SueldoResponse(0.0,0.0,0.0,statusResponse));
 
-                } else if (statusResponse.getStatusCode().equals("0")) {
-//                    new SnackAlert(getActivity())
-//                            .setTitle("Alerta")
-//                            .setMessage(statusResponse.getStatusText())
-//                            .setType(SnackAlert.WARNING)
-//                            .show();
-                } else if (statusResponse.getStatusCode().equals("-1")) {
-//                    new SnackAlert(getActivity())
-//                            .setTitle("Error")
-//                            .setMessage(statusResponse.getStatusText())
-//                            .setType(SnackAlert.ERROR)
-//                            .show();
+                } else if (statusResponse.getStatusCode().equals(Constants.STATUS.ERROR)) {
+                    ((ContenedorActivity) getActivity()).showProgress(false);
+                    ToastSilicon.toastDangerOne(getActivity(),statusResponse.getStatusText(), Toast.LENGTH_SHORT);
                 }
-                ((ContenedorActivity) getActivity()).showProgress(false);
+
             }
 
             @Override
             public void onFailure(Call<SueldoResponse> call, Throwable t) {
                 ((ContenedorActivity) getActivity()).showProgress(false);
-//                new SnackAlert(getActivity())
-//                        .setTitle("Error")
-//                        .setMessage(t.getMessage())
-//                        .setType(SnackAlert.ERROR)
-//                        .show();
+                ToastSilicon.toastDangerOne(getActivity(),t.getMessage(), Toast.LENGTH_SHORT);
             }
         });
 
@@ -144,27 +145,5 @@ public class HomeFragment extends Fragment {
         menuSueldoAdapter=new MenuSueldoAdapter(getContext(),menuSueldos,sueldoResponse);
         rvMenuSueldo.setAdapter(menuSueldoAdapter);
     }
-//    private void menuVentasRecycler(){
-//        rvMenuVenta.setHasFixedSize(true);
-//        rvMenuVenta.setLayoutManager(new LinearLayoutManager(getContext(),LinearLayoutManager.HORIZONTAL,false));
-//        ArrayList<MenuDashboard> menuVentas=new ArrayList<>();
-//        menuVentas.add(new MenuDashboard("01","Pizza Clásica","Salsa clásica de la casa","$",new Double(12.58),R.drawable.pizza_clasica));
-//        menuVentas.add(new MenuDashboard("02","Hamburguesa mix","Doble carne con queso","$",new Double(12.58),R.drawable.hamburguesa_mix_img));
-//        menuVentaAdapter=new MenuVentaAdapter(getContext(),menuVentas);
-//        rvMenuVenta.setAdapter(menuVentaAdapter);
-//    }
-
-//    private void menuSueldosRecycler(){
-//        rvMenuSueldo.setHasFixedSize(true);
-//        rvMenuSueldo.setLayoutManager(new LinearLayoutManager(getContext(),LinearLayoutManager.HORIZONTAL,false));
-//        ArrayList<MenuDashboard> menuVentas=new ArrayList<>();
-//        menuVentas.add(new MenuDashboard("03","Pizza Clásica","Salsa clásica de la casa","$",new Double(12.58),R.drawable.pizza_clasica));
-//        menuVentas.add(new MenuDashboard("04","Hamburguesa mix","Doble carne con queso","$",new Double(12.58),R.drawable.hamburguesa_mix_img));
-//        menuVentas.add(new MenuDashboard("05","Hamburguesa mix","Doble carne con queso","$",new Double(12.58),R.drawable.hamburguesa_mix_img));
-//        menuVentas.add(new MenuDashboard("06","Hamburguesa mix","Doble carne con queso","$",new Double(12.58),R.drawable.hamburguesa_mix_img));
-//
-//        menuSueldoAdapter=new MenuSueldoAdapter(getContext(),menuVentas);
-//        rvMenuSueldo.setAdapter(menuSueldoAdapter);
-//    }
 
 }

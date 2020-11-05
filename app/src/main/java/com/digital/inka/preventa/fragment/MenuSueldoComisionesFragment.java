@@ -11,6 +11,8 @@ import android.widget.TextView;
 import androidx.fragment.app.Fragment;
 
 import com.digital.inka.R;
+import com.digital.inka.preventa.activity.ContenedorActivity;
+import com.google.android.material.button.MaterialButton;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -28,6 +30,7 @@ public class MenuSueldoComisionesFragment extends Fragment {
     private ProgressBar progressBar;
     private int pStatus = 0;
     private Handler handler = new Handler();
+    private MaterialButton btnGo;
 
     public MenuSueldoComisionesFragment() {
         // Required empty public constructor
@@ -61,8 +64,14 @@ public class MenuSueldoComisionesFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-View view=inflater.inflate(R.layout.fragment_menu_sueldo_comisiones, container, false);
-
+        View view=inflater.inflate(R.layout.fragment_menu_sueldo_comisiones, container, false);
+        btnGo=(MaterialButton)view.findViewById(R.id.btnGo);
+        btnGo.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                ((ContenedorActivity) getActivity()).loadComisionesFragment();
+            }
+        });
 
         return view;
     }

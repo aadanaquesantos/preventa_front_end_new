@@ -1,5 +1,6 @@
 package com.digital.inka.preventa.activity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
@@ -11,6 +12,8 @@ import androidx.fragment.app.FragmentTransaction;
 import com.digital.inka.R;
 import com.digital.inka.preventa.activity.base.BaseActivity;
 import com.digital.inka.preventa.fragment.AvanceFragment;
+import com.digital.inka.preventa.fragment.AvanceProveedorFragment;
+import com.digital.inka.preventa.fragment.ComisionesFragment;
 import com.digital.inka.preventa.fragment.HomeFragment;
 import com.digital.inka.preventa.fragment.RegistroFragment;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
@@ -21,6 +24,9 @@ public class ContenedorActivity extends BaseActivity {
     private BottomNavigationView navigation;
 
     AvanceFragment avanceFragment = new AvanceFragment();
+    AvanceProveedorFragment avanceProveedorFragment=new AvanceProveedorFragment();
+    ComisionesFragment comisionesFragment=new ComisionesFragment();
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -86,6 +92,56 @@ public class ContenedorActivity extends BaseActivity {
         }
     }
 
+    public void loadAvanceProveedorFragment() {
+        if (avanceProveedorFragment.isAdded()) {
+            getSupportFragmentManager()
+                    .beginTransaction()
+                    .replace(R.id.contenedorFragment, avanceProveedorFragment).addToBackStack(null)
+                    .commit();
+        } else {
+            getSupportFragmentManager()
+                    .beginTransaction()
+                    .add(android.R.id.content, avanceProveedorFragment).addToBackStack(null)
+                    .commit();
+        }
+    }
+
+    public void loadComisionesFragment() {
+        if (comisionesFragment.isAdded()) {
+            getSupportFragmentManager()
+                    .beginTransaction()
+                    .replace(R.id.contenedorFragment, comisionesFragment).addToBackStack(null)
+                    .commit();
+        } else {
+            getSupportFragmentManager()
+                    .beginTransaction()
+                    .add(android.R.id.content, comisionesFragment).addToBackStack(null)
+                    .commit();
+        }
+    }
 
 
+    boolean exit=false;
+    @Override
+    public void onBackPressed() {
+
+      int count = getSupportFragmentManager().getBackStackEntryCount();
+        if (count == 6) {
+//            if (exit) {
+                   finish(); // finish activity
+//            } else {
+//
+//                exit = true;
+//
+//
+          }else{
+            getSupportFragmentManager().popBackStackImmediate();
+           int c = getSupportFragmentManager().getBackStackEntryCount();
+        }
+//        } else {
+//            getSupportFragmentManager().popBackStackImmediate();
+//            int c = getSupportFragmentManager().getBackStackEntryCount();
+//        }
+
+    }
 }

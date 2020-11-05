@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    app:cardElevation="@dimen/_10sdp"
+    android:layout_height="wrap_content">
+
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/commonColorWhite">
+
+        <ProgressBar
+            android:id="@+id/pbAvance"
+            style="@android:style/Widget.ProgressBar.Horizontal"
+            android:layout_width="0dp"
+            android:layout_height="32dp"
+            android:background="@color/commonColorWhite"
+            android:backgroundTint="@color/commonColorWhite"
+            android:progressBackgroundTint="@color/commonColorWhite"
+            android:progressDrawable="@drawable/prgress_drawable_dinamic"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/tvProveedor"
+            style="@style/Widget.AppCompat.TextView"
+            android:layout_width="0dp"
+            android:layout_height="18dp"
+            android:layout_marginStart="32dp"
+            android:layout_marginLeft="32dp"
+            android:layout_marginTop="19dp"
+            android:layout_marginBottom="12dp"
+            android:fontFamily="@font/poppins_bold"
+            android:gravity="start"
+            android:text="PROVEEDOR"
+            android:textColor="#171616"
+            android:textSize="10sp"
+            app:layout_constraintBottom_toBottomOf="@+id/pbAvance"
+            app:layout_constraintEnd_toEndOf="@+id/pbAvance"
+            app:layout_constraintStart_toStartOf="@+id/pbAvance"
+            app:layout_constraintTop_toTopOf="@+id/pbAvance" />
+
+        <TextView
+            android:id="@+id/tvAvance"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="8dp"
+            android:layout_marginRight="8dp"
+            android:text="80%"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.cardview.widget.CardView>

@@ -1,6 +1,10 @@
 package com.digital.inka.preventa.service;
 
 
+import com.digital.inka.preventa.model.AvancePoliticaListResponse;
+import com.digital.inka.preventa.model.AvanceProveedorListResponse;
+import com.digital.inka.preventa.model.AvanceResponse;
+import com.digital.inka.preventa.model.PeriodoListResponse;
 import com.digital.inka.preventa.model.StatusResponse;
 import com.digital.inka.preventa.model.SueldoResponse;
 import com.digital.inka.preventa.model.User;
@@ -28,4 +32,17 @@ public interface UserService {
 
     @GET("getSueldo")
     Call<SueldoResponse> getSueldo(@QueryMap Map<String, String> parametros);
+
+    @GET("getPeriodos")
+    Call<PeriodoListResponse> getPeriodos();
+
+
+    @GET("getAvanceByPeriodo")
+    Call<AvanceResponse> getAvanceByPeriodo(@QueryMap Map<String, String> parametros);
+
+    @GET("getAvanceProveedorByPeriodo")
+    Call<AvanceProveedorListResponse> getAvanceProveedorByPeriodo(@QueryMap Map<String, String> parametros);
+
+    @GET("getComisiones")
+    Call<AvancePoliticaListResponse> getComisiones(@QueryMap Map<String, String> parametros);
 }

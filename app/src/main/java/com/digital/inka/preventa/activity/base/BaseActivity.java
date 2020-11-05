@@ -123,6 +123,7 @@ public abstract class BaseActivity extends AppCompatActivity {
 
     public void showProgress(boolean band){
         if(band){
+
             if(!isFinishing()&& !dialog.isShowing() ){
                 dialog.setCanceledOnTouchOutside(false);
                 dialog.show();
@@ -150,5 +151,10 @@ public abstract class BaseActivity extends AppCompatActivity {
         super.onResume();
      }
 
-
+    @Override
+    protected void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
+        //solution of fragment.getActivity() is null
+        outState.remove("android:support:fragments");
+    }
 }

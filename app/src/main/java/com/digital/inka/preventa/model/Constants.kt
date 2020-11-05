@@ -13,4 +13,10 @@ object Constants {
         const val myPreferences = "MyPreferences"
 
     }
+
+    object STATUS{
+        const val SUCCESS="1"
+        const val WARNING="0"
+        const val ERROR="-1"
+    }
 }

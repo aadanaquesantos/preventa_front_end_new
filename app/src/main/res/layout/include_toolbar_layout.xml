@@ -31,12 +31,12 @@
         android:layout_marginEnd="8dp"
         android:layout_marginRight="8dp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/imageView3"
+        app:layout_constraintEnd_toStartOf="@+id/ivClose"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/notification_icon" />
 
     <ImageView
-        android:id="@+id/imageView3"
+        android:id="@+id/ivClose"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="32dp"
