@@ -71,7 +71,14 @@ public class MenuAvanceVentasFragment extends Fragment {
         btnGo.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                ((ContenedorActivity) getActivity()).loadAvanceFragment();
+                btnGo.setEnabled(false);
+                v.postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        btnGo.setEnabled(true);
+                        ((ContenedorActivity) getActivity()).loadAvanceFragment();
+                    }
+                },150); //150 is in milliseconds
             }
         });
         return view;

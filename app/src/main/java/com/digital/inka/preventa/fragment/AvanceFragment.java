@@ -85,6 +85,9 @@ public class AvanceFragment extends DialogFragment {
         return fragment;
     }
 
+
+
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -113,8 +116,8 @@ public class AvanceFragment extends DialogFragment {
         ivClose.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
-                getActivity().onBackPressed();
+                    ivClose.setEnabled(false);
+                 getActivity().onBackPressed();
 
             }
         });
@@ -132,7 +135,8 @@ public class AvanceFragment extends DialogFragment {
             }
 
         });
-         callGetPeriodos();
+
+        callGetPeriodos();
        return view;
     }
 
@@ -154,9 +158,13 @@ public class AvanceFragment extends DialogFragment {
                 StatusResponse statusResponse = response.body().getStatus();
                 if (statusResponse.getStatusCode().equals(Constants.STATUS.SUCCESS)) {
                     List<Periodo> periodos = response.body().getPeriodos();
-                    SpinnerPeriodoAdapter spinnerPeriodoAdapter=new SpinnerPeriodoAdapter(getActivity(),R.layout.list_periodo_spinner_item,periodos);
-                    material_spinner.setAdapter(spinnerPeriodoAdapter);
-                    callAvanceByPeriodo("DIAZPJOS", spinnerPeriodoAdapter.getItem(0).getAnnio(), spinnerPeriodoAdapter.getItem(0).getDescription());
+                    if (getActivity()!=null){
+                        SpinnerPeriodoAdapter spinnerPeriodoAdapter=new SpinnerPeriodoAdapter(getActivity(),R.layout.list_periodo_spinner_item,periodos);
+                        material_spinner.setAdapter(spinnerPeriodoAdapter);
+                        callAvanceByPeriodo("DIAZPJOS", spinnerPeriodoAdapter.getItem(0).getAnnio(), spinnerPeriodoAdapter.getItem(0).getDescription());
+
+                    }
+
                 } else if (statusResponse.getStatusCode().equals(Constants.STATUS.WARNING)) {
                     ((ContenedorActivity) getActivity()).showProgress(false);
                     ToastSilicon.toastWarningOne(getActivity(),statusResponse.getStatusText(), Toast.LENGTH_SHORT);
@@ -173,8 +181,6 @@ public class AvanceFragment extends DialogFragment {
                 ToastSilicon.toastDangerOne(getActivity(),t.getMessage(), Toast.LENGTH_SHORT);
             }
         });
-
-
     }
 
 

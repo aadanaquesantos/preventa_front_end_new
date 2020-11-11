@@ -30,11 +30,13 @@ public class MenuVentaAdapter extends RecyclerView.Adapter<MenuVentaAdapter.Menu
     ArrayList<MenuDashboard> menuVentaList=new ArrayList<>();
     Context context;
     SueldoResponse sueldoResponse;
+    FragmentManager fragmentManager;
 
-    public MenuVentaAdapter(Context context, ArrayList<MenuDashboard> menuVentaList, SueldoResponse sueldoResponse) {
+    public MenuVentaAdapter(Context context, ArrayList<MenuDashboard> menuVentaList, SueldoResponse sueldoResponse,FragmentManager fragmentManager) {
         this.menuVentaList = menuVentaList;
         this.context=context;
         this.sueldoResponse=sueldoResponse;
+        this.fragmentManager=fragmentManager;
     }
 
     @NonNull
@@ -48,24 +50,24 @@ public class MenuVentaAdapter extends RecyclerView.Adapter<MenuVentaAdapter.Menu
     @Override
     public void onBindViewHolder(@NonNull MenuVentaViewHolder holder, int position) {
         MenuDashboard producto=menuVentaList.get(position);
-        FragmentManager fm=((BaseActivity)context).getSupportFragmentManager();
+        //FragmentManager fm=((BaseActivity)context).getSupportFragmentManager();
         int newContainerId = ViewIdGenerator.generateViewId();
         if(producto.getCodMenu().equals("01")){
             holder.containerMenuVenta.setId(newContainerId);// Set container id
-            MenuAvanceVentasFragment  menuAvanceVentasFragment = (MenuAvanceVentasFragment) fm.findFragmentById(newContainerId);
+            MenuAvanceVentasFragment  menuAvanceVentasFragment = (MenuAvanceVentasFragment) fragmentManager.findFragmentById(newContainerId);
             if (menuAvanceVentasFragment == null) {
                 menuAvanceVentasFragment = MenuAvanceVentasFragment.newInstance(sueldoResponse.getAvanceCuota());
-                fm .beginTransaction()
+                fragmentManager .beginTransaction()
                         .add(newContainerId, menuAvanceVentasFragment).addToBackStack(null)
                         .commit();
 
             }
         }else if(producto.getCodMenu().equals("02")){
             holder.containerMenuVenta.setId(newContainerId);// Set container id
-            MenuAvancePorProveedorFragment  menuAvancePorProveedorFragment = (MenuAvancePorProveedorFragment) fm.findFragmentById(newContainerId);
+            MenuAvancePorProveedorFragment  menuAvancePorProveedorFragment = (MenuAvancePorProveedorFragment) fragmentManager.findFragmentById(newContainerId);
             if (menuAvancePorProveedorFragment == null) {
                 menuAvancePorProveedorFragment = MenuAvancePorProveedorFragment.newInstance();
-                fm .beginTransaction()
+                fragmentManager .beginTransaction()
                         .add(newContainerId, menuAvancePorProveedorFragment).addToBackStack(null)
                         .commit();
             }

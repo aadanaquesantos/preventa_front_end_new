@@ -35,12 +35,68 @@ data class UserResponse(
 data class Customer(
     var code:String,
     var description:String,
+    var dni:String,
+    var ruc:String,
+    var email:String,
+    var phone:String,
+    var cellPhone:String,
     var address:String,
     var status:String
 )
-data class CustomerListResponse(
+data class DivisionEmpresa(
+        var code:String,
+        var description:String
+)
+data class DispatchAddress(
+        var code:String,
+        var description:String,
+        var route:Route,
+        var statusLocal:String,
+        var listaPrecios:ListaPrecios
+)
+data class DispatchAddressResponse(
+        var address:DispatchAddress,
+        var status:StatusResponse
+)
+data class Route(
+        var code:String,
+        var description:String,
+        var division:DivisionEmpresa ,
+        var company:Company
+)
+
+//todo ok
+data class CustomerInfoResponse(
+        var customer:Customer,
+        var addresses:ArrayList<DispatchAddress>? = null,
+        var status:StatusResponse
+)
+// todo ok
+data class CustomerPedidoResponse(
+        var customer:Customer,
+        var dispatchAddress: DispatchAddress,
+        var almacenes: ArrayList<Almacen>,
+        var condiciones: ArrayList<CondicionPago>,
+        var tipoDocs: ArrayList<TipoDoc>,
+        var status:StatusResponse
+)
+
+data class RouteListResponse(
+        var routes:ArrayList<Route>?= null,
+        var status:StatusResponse
+
+)
+data class Company(
+        var code:String,
+        var description:String
+)
+data class CustomerLocalListResponse(
         var status:StatusResponse,
-        var customers: ArrayList<Customer>? = null
+        var customerLocals: ArrayList<CustomerLocal>? = null
+)
+data class  CustomerLocal(
+        var customer: Customer,
+        var dispatchAddress: DispatchAddress
 )
 
 data class SueldoResponse(
@@ -119,11 +175,6 @@ data class StatusResponse(
     var statusText: String = ""
   )
 
-
-
-
-
-
 data class LoginResponse(
     val user_id: String? = null,
     val token: String,
@@ -135,3 +186,47 @@ data class LoginResponse(
     val avatar: String,
     val profile_image: String
 )
+
+data class CondicionPago(
+        val code: String? = null,
+        val description: String
+)
+
+data class Almacen(
+        val code: String,
+        val description: String,
+        val codLocalidad:String,
+        val codMesa:String,
+        val codEmpresa:String
+)
+
+data class AlmacenListResponse(
+       val almacenes:ArrayList<Almacen>,
+       var status:StatusResponse
+)
+data class CondicionListResponse(
+        var condiciones:ArrayList<CondicionPago>,
+        var status:StatusResponse
+)
+data class TipoDocListResponse(
+        var tipoDocs:ArrayList<TipoDoc>,
+        var status:StatusResponse
+)
+data class TipoDoc(
+        var code:String,
+        var description:String
+)
+
+data class Vendedor(
+        val code:String,
+        var description:String
+)
+
+data class ListaPrecios(
+        val code:String,
+        var description:String
+)
+
+
+
+

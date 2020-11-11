@@ -111,7 +111,7 @@
                         android:layout_height="match_parent">
 
                         <androidx.recyclerview.widget.RecyclerView
-                            android:id="@+id/rvComisiones"
+                            android:id="@+id/rvDirecciones"
                             android:layout_width="0dp"
                             android:layout_height="@dimen/_200sdp"
                             app:layout_constraintBottom_toBottomOf="parent"

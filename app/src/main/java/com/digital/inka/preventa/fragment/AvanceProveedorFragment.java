@@ -85,7 +85,7 @@ public class AvanceProveedorFragment extends DialogFragment {
         ivClose=view.findViewById(R.id.ivClose);
         material_spinner=view.findViewById(R.id.material_spinner);
         tvTitle.setText("Avance por proveedor");
-        recyclerView = (RecyclerView) view.findViewById(R.id.rvComisiones);
+        recyclerView = (RecyclerView) view.findViewById(R.id.rvDirecciones);
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
       //  recyclerView.addItemDecoration(new LineItemDecoration(getActivity(), LinearLayout.VERTICAL));
         recyclerView.setHasFixedSize(true);

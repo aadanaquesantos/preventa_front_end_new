@@ -68,7 +68,7 @@
             app:layout_constraintGuide_begin="238dp" />
 
         <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/rvComisiones"
+            android:id="@+id/rvDirecciones"
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:layout_marginStart="8dp"

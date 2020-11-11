@@ -157,4 +157,6 @@ public abstract class BaseActivity extends AppCompatActivity {
         //solution of fragment.getActivity() is null
         outState.remove("android:support:fragments");
     }
+
+
 }

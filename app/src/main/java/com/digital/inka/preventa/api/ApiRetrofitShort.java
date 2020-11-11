@@ -54,7 +54,7 @@ public class ApiRetrofitShort {
 
 //        }).readTimeout(60, TimeUnit.SECONDS).connectTimeout(60, TimeUnit.SECONDS).build();
         })
-     .readTimeout(30, TimeUnit.SECONDS)
+     .readTimeout(6, TimeUnit.SECONDS)
                  .connectTimeout(6, TimeUnit.SECONDS).build();
     }
     private void buildRetrofit(String url) {

@@ -21,14 +21,11 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.digital.inka.R;
 import com.digital.inka.preventa.activity.ContenedorActivity;
-import com.digital.inka.preventa.adapter.AvanceProveedorListAdapter;
 import com.digital.inka.preventa.adapter.ComisionesListAdapter;
 import com.digital.inka.preventa.adapter.SpinnerPeriodoAdapter;
 import com.digital.inka.preventa.api.ApiRetrofitShort;
 import com.digital.inka.preventa.model.AvancePolitica;
 import com.digital.inka.preventa.model.AvancePoliticaListResponse;
-import com.digital.inka.preventa.model.AvanceProveedor;
-import com.digital.inka.preventa.model.AvanceProveedorListResponse;
 import com.digital.inka.preventa.model.Constants;
 import com.digital.inka.preventa.model.Periodo;
 import com.digital.inka.preventa.model.PeriodoListResponse;
@@ -88,7 +85,7 @@ public class ComisionesFragment extends DialogFragment {
         ivClose=view.findViewById(R.id.ivClose);
         material_spinner=view.findViewById(R.id.material_spinner);
         tvTitle.setText("Comisiones");
-        recyclerView = (RecyclerView) view.findViewById(R.id.rvComisiones);
+        recyclerView = (RecyclerView) view.findViewById(R.id.rvDirecciones);
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
          recyclerView.setHasFixedSize(true);
 

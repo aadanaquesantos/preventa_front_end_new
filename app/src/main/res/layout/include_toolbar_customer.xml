@@ -8,8 +8,6 @@
     android:background="@color/commonColorWhite"
     android:elevation="@dimen/_4sdp">
 
-
-
     <TextView
         android:id="@+id/textView"
         android:layout_width="wrap_content"

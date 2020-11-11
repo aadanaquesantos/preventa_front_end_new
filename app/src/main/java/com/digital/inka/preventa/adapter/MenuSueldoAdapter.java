@@ -29,11 +29,12 @@ public class MenuSueldoAdapter extends RecyclerView.Adapter<MenuSueldoAdapter.Me
     ArrayList<MenuDashboard> menuVentaList=new ArrayList<>();
     Context context;
     SueldoResponse sueldoResponse;
-
-    public MenuSueldoAdapter(Context context, ArrayList<MenuDashboard> menuVentaList, SueldoResponse sueldoResponse) {
+    FragmentManager fragmentManager;
+    public MenuSueldoAdapter(Context context, ArrayList<MenuDashboard> menuVentaList, SueldoResponse sueldoResponse,FragmentManager fragmentManager) {
         this.menuVentaList = menuVentaList;
         this.context=context;
         this.sueldoResponse=sueldoResponse;
+        this.fragmentManager=fragmentManager;
     }
 
     @NonNull
@@ -47,14 +48,14 @@ public class MenuSueldoAdapter extends RecyclerView.Adapter<MenuSueldoAdapter.Me
     @Override
     public void onBindViewHolder(@NonNull MenuVentaViewHolder holder, int position) {
         MenuDashboard producto=menuVentaList.get(position);
-        FragmentManager fm=((BaseActivity)context).getSupportFragmentManager();
+       // FragmentManager fm=((BaseActivity)context).getSupportFragmentManager();
         int newContainerId = ViewIdGenerator.generateViewId();
         if(producto.getCodMenu().equals("03")){
             holder.containerMenuVenta.setId(newContainerId);// Set container id
-            MenuSueldoBasicoFragment menuSueldoBasicoFragment = (MenuSueldoBasicoFragment) fm.findFragmentById(newContainerId);
+            MenuSueldoBasicoFragment menuSueldoBasicoFragment = (MenuSueldoBasicoFragment) fragmentManager.findFragmentById(newContainerId);
             if (menuSueldoBasicoFragment == null) {
                 menuSueldoBasicoFragment = MenuSueldoBasicoFragment.newInstance(sueldoResponse.getSueldo());
-                fm .beginTransaction()
+                fragmentManager .beginTransaction()
                         .add(newContainerId, menuSueldoBasicoFragment).addToBackStack(null)
                         .commit();
 
@@ -62,29 +63,29 @@ public class MenuSueldoAdapter extends RecyclerView.Adapter<MenuSueldoAdapter.Me
 
         }else if(producto.getCodMenu().equals("04")){
             holder.containerMenuVenta.setId(newContainerId);// Set container id
-            MenuSueldoComisionesFragment menuSueldoComisionesFragment = (MenuSueldoComisionesFragment) fm.findFragmentById(newContainerId);
+            MenuSueldoComisionesFragment menuSueldoComisionesFragment = (MenuSueldoComisionesFragment) fragmentManager.findFragmentById(newContainerId);
             if (menuSueldoComisionesFragment == null) {
                 menuSueldoComisionesFragment = MenuSueldoComisionesFragment.newInstance();
-                fm .beginTransaction()
+                fragmentManager .beginTransaction()
                         .add(newContainerId, menuSueldoComisionesFragment).addToBackStack(null)
                         .commit();
             }
         }else if(producto.getCodMenu().equals("05")){
             holder.containerMenuVenta.setId(newContainerId);// Set container id
-            MenuSueldoIncentivosFragment menuSueldoIncentivosFragment = (MenuSueldoIncentivosFragment) fm.findFragmentById(newContainerId);
+            MenuSueldoIncentivosFragment menuSueldoIncentivosFragment = (MenuSueldoIncentivosFragment) fragmentManager.findFragmentById(newContainerId);
             if (menuSueldoIncentivosFragment == null) {
                 menuSueldoIncentivosFragment = MenuSueldoIncentivosFragment.newInstance();
-                fm .beginTransaction()
+                fragmentManager .beginTransaction()
                         .add(newContainerId, menuSueldoIncentivosFragment).addToBackStack(null)
                         .commit();
             }
 
         }else if(producto.getCodMenu().equals("06")){
             holder.containerMenuVenta.setId(newContainerId);// Set container id
-            MenuSueldoHistoricoFragment menuSueldoHistoricoFragment = (MenuSueldoHistoricoFragment) fm.findFragmentById(newContainerId);
+            MenuSueldoHistoricoFragment menuSueldoHistoricoFragment = (MenuSueldoHistoricoFragment) fragmentManager.findFragmentById(newContainerId);
             if (menuSueldoHistoricoFragment == null) {
                 menuSueldoHistoricoFragment = MenuSueldoHistoricoFragment.newInstance();
-                fm .beginTransaction()
+                fragmentManager .beginTransaction()
                         .add(newContainerId, menuSueldoHistoricoFragment).addToBackStack(null)
                         .commit();
             }

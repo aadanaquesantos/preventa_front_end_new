@@ -7,7 +7,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
 
+import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -68,12 +70,29 @@ public class HomeFragment extends Fragment {
     }
 
     @Override
+    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
+        super.onActivityCreated(savedInstanceState);
+
+        callGetSueldoCuotaAvance();
+
+    }
+
+    @Override
     public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
+
         if (getArguments() != null) {
          //   mParam1 = getArguments().getString(ARG_PARAM1);
           //  mParam2 = getArguments().getString(ARG_PARAM2);
         }
+//        HomeFragment fragment;
+//        if (savedInstanceState != null) {
+//            fragment = (HomeFragment) getActivity().getSupportFragmentManager().findFragmentByTag("HomeFragment");
+//        }
+//        else {
+//            fragment = new HomeFragment();
+//            getActivity().getSupportFragmentManager().beginTransaction().add(R.id.contenedorFragment, fragment, "HomeFragment").commit();
+//        }
+        super.onCreate(savedInstanceState);
     }
 
     @Override
@@ -82,9 +101,6 @@ public class HomeFragment extends Fragment {
         View root=inflater.inflate(R.layout.fragment_home, container, false);
         rvMenuVenta=root.findViewById(R.id.rvMenuVentas);
         rvMenuSueldo=root.findViewById(R.id.rvMenuSueldos);
-        View viewFloating= getActivity().findViewById(R.id.floatings);
-        viewFloating.setVisibility(View.INVISIBLE);
-      callGetSueldoCuotaAvance();
         return root;
     }
 
@@ -96,21 +112,26 @@ public class HomeFragment extends Fragment {
         loginCall.enqueue(new Callback<SueldoResponse>() {
             @Override
             public void onResponse(Call<SueldoResponse> call, Response<SueldoResponse> response) {
-                StatusResponse statusResponse = response.body().getStatus();
-                if (statusResponse.getStatusCode().equals(Constants.STATUS.SUCCESS)) {
-                    if(getActivity()==null){
-                        System.out.println(getActivity());
-                    }
-                    ((ContenedorActivity) getActivity()).showProgress(false);// verificar
+                if(response.body()!=null){
+                    StatusResponse statusResponse = response.body().getStatus();
+                    if (statusResponse.getStatusCode().equals(Constants.STATUS.SUCCESS)) {
+                        if(getActivity()==null){
+                            System.out.println(getActivity());
+                        }
+                        ((ContenedorActivity) getActivity()).showProgress(false);// verificar
                         loadMenus(response.body());
-                } else if (statusResponse.getStatusCode().equals(Constants.STATUS.WARNING)) {
-                    ((ContenedorActivity) getActivity()).showProgress(false);
-                    ToastSilicon.toastWarningOne(getActivity(),statusResponse.getStatusText(), Toast.LENGTH_SHORT);
-                    loadMenus(new SueldoResponse(0.0,0.0,0.0,statusResponse));
+                    } else if (statusResponse.getStatusCode().equals(Constants.STATUS.WARNING)) {
+                        ((ContenedorActivity) getActivity()).showProgress(false);
+                        ToastSilicon.toastWarningOne(getActivity(),statusResponse.getStatusText(), Toast.LENGTH_SHORT);
+                        loadMenus(new SueldoResponse(0.0,0.0,0.0,statusResponse));
 
-                } else if (statusResponse.getStatusCode().equals(Constants.STATUS.ERROR)) {
-                    ((ContenedorActivity) getActivity()).showProgress(false);
-                    ToastSilicon.toastDangerOne(getActivity(),statusResponse.getStatusText(), Toast.LENGTH_SHORT);
+                    } else if (statusResponse.getStatusCode().equals(Constants.STATUS.ERROR)) {
+                        ((ContenedorActivity) getActivity()).showProgress(false);
+                        ToastSilicon.toastDangerOne(getActivity(),statusResponse.getStatusText(), Toast.LENGTH_SHORT);
+                    }
+
+                }else{
+                    ToastSilicon.toastDangerOne(getActivity(),"SERVICIO DETENIDO!!", Toast.LENGTH_SHORT);
                 }
 
             }
@@ -131,7 +152,7 @@ public class HomeFragment extends Fragment {
         ArrayList<MenuDashboard> menuVentas=new ArrayList<>();
         menuVentas.add(new MenuDashboard("01","Pizza Clásica","Salsa clásica de la casa","$",new Double(12.58),R.drawable.pizza_clasica));
         menuVentas.add(new MenuDashboard("02","Hamburguesa mix","Doble carne con queso","$",new Double(12.58),R.drawable.hamburguesa_mix_img));
-        menuVentaAdapter=new MenuVentaAdapter(getContext(),menuVentas,sueldoResponse);
+        menuVentaAdapter=new MenuVentaAdapter(getContext(),menuVentas,sueldoResponse,getChildFragmentManager());
         rvMenuVenta.setAdapter(menuVentaAdapter);
 
         rvMenuSueldo.setHasFixedSize(true);
@@ -142,7 +163,7 @@ public class HomeFragment extends Fragment {
         menuSueldos.add(new MenuDashboard("05","Hamburguesa mix","Doble carne con queso","$",new Double(12.58),R.drawable.hamburguesa_mix_img));
         menuSueldos.add(new MenuDashboard("06","Hamburguesa mix","Doble carne con queso","$",new Double(12.58),R.drawable.hamburguesa_mix_img));
 
-        menuSueldoAdapter=new MenuSueldoAdapter(getContext(),menuSueldos,sueldoResponse);
+        menuSueldoAdapter=new MenuSueldoAdapter(getContext(),menuSueldos,sueldoResponse,getChildFragmentManager());
         rvMenuSueldo.setAdapter(menuSueldoAdapter);
     }
 
