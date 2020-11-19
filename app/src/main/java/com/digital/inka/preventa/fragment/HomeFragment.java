@@ -8,6 +8,7 @@ import android.view.ViewGroup;
 import android.widget.Toast;
 
 import androidx.annotation.Nullable;
+import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -58,6 +59,7 @@ public class HomeFragment extends Fragment {
     private RecyclerView rvMenuSueldo;
     MenuVentaAdapter menuVentaAdapter;
     MenuSueldoAdapter menuSueldoAdapter;
+    private ConstraintLayout lyt_parent;
 
     public HomeFragment() {
         // Required empty public constructor
@@ -101,6 +103,7 @@ public class HomeFragment extends Fragment {
         View root=inflater.inflate(R.layout.fragment_home, container, false);
         rvMenuVenta=root.findViewById(R.id.rvMenuVentas);
         rvMenuSueldo=root.findViewById(R.id.rvMenuSueldos);
+        lyt_parent=root.findViewById(R.id.lyt_parent);
         return root;
     }
 
@@ -119,6 +122,7 @@ public class HomeFragment extends Fragment {
                             System.out.println(getActivity());
                         }
                         ((ContenedorActivity) getActivity()).showProgress(false);// verificar
+
                         loadMenus(response.body());
                     } else if (statusResponse.getStatusCode().equals(Constants.STATUS.WARNING)) {
                         ((ContenedorActivity) getActivity()).showProgress(false);
@@ -165,6 +169,7 @@ public class HomeFragment extends Fragment {
 
         menuSueldoAdapter=new MenuSueldoAdapter(getContext(),menuSueldos,sueldoResponse,getChildFragmentManager());
         rvMenuSueldo.setAdapter(menuSueldoAdapter);
+        lyt_parent.setVisibility(View.VISIBLE);
     }
 
 }

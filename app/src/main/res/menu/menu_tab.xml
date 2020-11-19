@@ -3,25 +3,26 @@
 
     <item
         android:id="@+id/goHome"
-        android:icon="@drawable/icon_dash_home"
+        android:iconTint="@color/colorPrimary"
+        android:icon="@drawable/icon_tab_inicio"
         android:title="Inicio" />
 
 
     <item
         android:id="@+id/goCustomer"
-        android:iconTint="@color/tab_home_active"
-        android:icon="@drawable/list_customer"
+        android:iconTint="@color/colorPrimary"
+        android:icon="@drawable/icon_tab_cliente"
         android:title="Clientes" />
 
     <item
         android:id="@+id/goArticles"
-        android:iconTint="@color/tab_home_active"
-        android:icon="@drawable/article"
+        android:iconTint="@color/colorPrimary"
+        android:icon="@drawable/icon_tab_articulos"
         android:title="Precios" />
 
     <item
         android:id="@+id/goGifts"
-        android:iconTint="@color/tab_home_active"
+        android:iconTint="@color/colorPrimary"
         android:icon="@drawable/bonif"
         android:title="Bonificaciones" />
     <item

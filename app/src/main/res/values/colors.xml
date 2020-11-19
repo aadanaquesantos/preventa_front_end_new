@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#e53934</color>
-    <color name="colorPrimaryDark">#ef4437</color>
+    <color name="colorPrimary">#153E73</color>
+    <color name="colorPrimaryDark">#38a4dc</color>
     <color name="colorAccent">#03DAC5</color>
 
     <!-- Blue -->
@@ -529,7 +529,7 @@
     <color name="grey_900">#212121</color>
     <color name="grey_1000">#1a1a1a</color>
     <color name="tab_home_active">#20D0C4</color>
-    <color name="tab_inactive">#BBBBBB</color>
+    <color name="tab_inactive">#616161</color>
 
 
     <integer-array name="androidcolors">
