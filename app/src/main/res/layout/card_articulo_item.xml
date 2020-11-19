@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/lyt_parent"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="4dp"
+    android:layout_marginRight="10dp"
+    android:layout_marginBottom="4dp"
+    android:clickable="true"
+    android:elevation="@dimen/_20sdp"
+    android:foreground="?android:selectableItemBackground"
+    android:paddingRight="10dp"
+    app:cardBackgroundColor="@color/commonColorWhite"
+    app:cardCornerRadius="10dp"
+    app:cardElevation="@dimen/_30sdp"
+    app:cardMaxElevation="10dp"
+    app:layout_constraintBottom_toTopOf="@+id/tvTitle"
+    app:layout_constraintEnd_toEndOf="parent"
+    app:layout_constraintHorizontal_bias="0.0"
+    app:layout_constraintStart_toStartOf="parent"
+    app:layout_constraintTop_toTopOf="parent">
+
+   <androidx.constraintlayout.widget.ConstraintLayout
+       android:layout_width="match_parent"
+       android:layout_height="wrap_content">
+
+      <ImageView
+          android:id="@+id/ivImagen"
+          android:layout_width="80dp"
+          android:layout_height="70dp"
+          android:layout_marginStart="4dp"
+          android:layout_marginLeft="4dp"
+          android:layout_marginTop="4dp"
+          android:layout_marginBottom="4dp"
+          android:scaleType="centerInside"
+          app:layout_constraintBottom_toBottomOf="parent"
+          app:layout_constraintEnd_toStartOf="@+id/tvTitle"
+          app:layout_constraintStart_toStartOf="parent"
+          app:layout_constraintTop_toTopOf="parent"
+          app:srcCompat="@drawable/art"
+          tools:layout_conversion_absoluteHeight="34dp"
+          tools:layout_conversion_absoluteWidth="48dp" />
+
+      <TextView
+          android:id="@+id/tvTitle"
+          android:layout_width="0dp"
+          android:layout_height="wrap_content"
+          android:fontFamily="@font/poppins_medium"
+          android:gravity="center"
+          android:lines="2"
+          android:maxLines="2"
+          android:text="aakakakakakakaksmsmasmasmamsamsmamsasas"
+          android:textColor="#153E73"
+          android:textSize="7sp"
+          app:layout_constraintBottom_toBottomOf="parent"
+          app:layout_constraintEnd_toEndOf="parent"
+          app:layout_constraintStart_toEndOf="@+id/ivImagen"
+          app:layout_constraintTop_toTopOf="parent" />
+
+      <TextView
+          android:id="@+id/tvUnidadMedida"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:layout_marginTop="8dp"
+          android:layout_marginBottom="4dp"
+          android:fontFamily="@font/poppins_medium"
+          android:text="TextView"
+          android:textColor="#153E73"
+          android:textSize="8dp"
+          app:layout_constraintBottom_toBottomOf="parent"
+          app:layout_constraintEnd_toEndOf="parent"
+          app:layout_constraintStart_toEndOf="@+id/ivImagen"
+          app:layout_constraintTop_toBottomOf="@+id/tvTitle" />
+
+   </androidx.constraintlayout.widget.ConstraintLayout>
+
+</androidx.cardview.widget.CardView>
+
+
+
+<!--<?xml version="1.0" encoding="utf-8"?>-->
+<!--<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"-->
+<!--    xmlns:app="http://schemas.android.com/apk/res-auto"-->
+<!--    xmlns:tools="http://schemas.android.com/tools"-->
+<!--    android:layout_width="64dp"-->
+<!--    android:layout_height="94dp"-->
+<!--    android:layout_margin="@dimen/_12sdp">-->
+
+<!--   <TextView-->
+<!--       android:id="@+id/tvTitle"-->
+<!--       android:layout_width="wrap_content"-->
+<!--       android:layout_height="wrap_content"-->
+<!--       android:layout_marginStart="8dp"-->
+<!--       android:layout_marginLeft="8dp"-->
+<!--       android:layout_marginEnd="8dp"-->
+<!--       android:layout_marginRight="8dp"-->
+<!--       android:fontFamily="@font/poppins_medium"-->
+<!--       android:text="Tacos"-->
+<!--       android:textColor="#153E73"-->
+<!--       android:textSize="12dp"-->
+<!--       app:layout_constraintBottom_toBottomOf="parent"-->
+<!--       app:layout_constraintEnd_toEndOf="parent"-->
+<!--       app:layout_constraintStart_toStartOf="parent"-->
+<!--       app:layout_constraintTop_toBottomOf="@+id/cvCategoria" />-->
+
+<!--   <androidx.cardview.widget.CardView-->
+<!--       android:id="@+id/cvCategoria"-->
+<!--       android:layout_width="64dp"-->
+<!--       android:layout_height="64dp"-->
+<!--       app:cardBackgroundColor="@color/colorCat5"-->
+<!--       app:cardCornerRadius="@dimen/_10sdp"-->
+<!--       app:layout_constraintBottom_toBottomOf="parent"-->
+<!--       app:layout_constraintEnd_toEndOf="parent"-->
+<!--       app:layout_constraintHorizontal_bias="0.0"-->
+<!--       app:layout_constraintStart_toStartOf="parent"-->
+<!--       app:layout_constraintTop_toTopOf="parent"-->
+<!--       app:layout_constraintVertical_bias="0.0">-->
+
+<!--      <androidx.constraintlayout.widget.ConstraintLayout-->
+<!--          android:layout_width="match_parent"-->
+<!--          android:layout_height="94dp">-->
+
+<!--         <ImageView-->
+<!--             android:id="@+id/ivCategoria"-->
+<!--             android:layout_width="0dp"-->
+<!--             android:layout_height="wrap_content"-->
+<!--             android:layout_marginStart="8dp"-->
+<!--             android:layout_marginLeft="8dp"-->
+<!--             android:layout_marginTop="8dp"-->
+<!--             android:layout_marginEnd="8dp"-->
+<!--             android:layout_marginRight="8dp"-->
+<!--             android:scaleType="fitCenter"-->
+<!--             app:layout_constraintBottom_toBottomOf="parent"-->
+<!--             app:layout_constraintEnd_toEndOf="parent"-->
+<!--             app:layout_constraintHorizontal_bias="0.0"-->
+<!--             app:layout_constraintStart_toStartOf="parent"-->
+<!--             app:layout_constraintTop_toTopOf="parent"-->
+<!--             app:layout_constraintVertical_bias="0.153"-->
+<!--             app:srcCompat="@drawable/tacos_iimg"-->
+<!--             tools:layout_conversion_absoluteHeight="34dp"-->
+<!--             tools:layout_conversion_absoluteWidth="48dp" />-->
+
+<!--      </androidx.constraintlayout.widget.ConstraintLayout>-->
+
+<!--   </androidx.cardview.widget.CardView>-->
+<!--</androidx.constraintlayout.widget.ConstraintLayout>-->

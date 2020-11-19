@@ -19,6 +19,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.digital.inka.R;
 import com.digital.inka.preventa.activity.ContenedorActivity;
+import com.digital.inka.preventa.adapter.AlmacenSpinner;
 import com.digital.inka.preventa.adapter.DireccionListAdapter;
 import com.digital.inka.preventa.adapter.SpinneCondicionAdapter;
 import com.digital.inka.preventa.adapter.SpinneTipoDocsAdapter;
@@ -26,18 +27,23 @@ import com.digital.inka.preventa.adapter.SpinnerAlmacenAdapter;
 import com.digital.inka.preventa.adapter.SpinnerPeriodoAdapter;
 import com.digital.inka.preventa.api.ApiRetrofitShort;
 import com.digital.inka.preventa.model.Almacen;
+import com.digital.inka.preventa.model.CarritoRequest;
 import com.digital.inka.preventa.model.CondicionPago;
 import com.digital.inka.preventa.model.Constants;
 import com.digital.inka.preventa.model.Customer;
 import com.digital.inka.preventa.model.CustomerPedidoResponse;
 import com.digital.inka.preventa.model.DispatchAddress;
 import com.digital.inka.preventa.model.DispatchAddressResponse;
+import com.digital.inka.preventa.model.DisponiblePrecioResponse;
+import com.digital.inka.preventa.model.PedidoResponse;
 import com.digital.inka.preventa.model.StatusResponse;
 import com.digital.inka.preventa.model.TipoDoc;
+import com.digital.inka.preventa.util.UtilAndroid;
 import com.digital.inka.preventa.widget.LineItemDecoration;
 import com.google.android.material.button.MaterialButton;
 import com.rabbil.toastsiliconlibrary.ToastSilicon;
 
+import java.sql.SQLOutput;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -73,7 +79,8 @@ public class DatosPedidoFragment extends Fragment {
     private DireccionListAdapter mAdapter;
     private MaterialButton btnRealizarPedido;
     // TODO: Rename and change types of parameters
-
+    private Customer customerSelected;
+    private DispatchAddress dispatchAddressSelected;
 
     public DatosPedidoFragment() {
         // Required empty public constructor
@@ -134,7 +141,24 @@ private String codCliente;
                     @Override
                     public void run() {
                         btnRealizarPedido.setEnabled(true);
-                        ((ContenedorActivity) getActivity()).loadCarritoFragment();
+                        CarritoRequest carritoRequest=new CarritoRequest();
+
+                        carritoRequest.setUsuario("DIAZPJOS");
+                        carritoRequest.setId(UtilAndroid.generarCorrelativo(carritoRequest.getUsuario()));
+                        carritoRequest.setCodEmpresa(((Almacen)spinnerAlmacenes.getSelectedItem()).getCodEmpresa());
+                        carritoRequest.setCodSede(((Almacen)spinnerAlmacenes.getSelectedItem()).getCodSede());
+                        carritoRequest.setCodLocalidad(((Almacen)spinnerAlmacenes.getSelectedItem()).getCodLocalidad());
+                        carritoRequest.setCodLocal(dispatchAddressSelected.getCode());
+                        carritoRequest.setCodAlmacen(((Almacen)spinnerAlmacenes.getSelectedItem()).getCode());
+                        carritoRequest.setCodMesa(((Almacen)spinnerAlmacenes.getSelectedItem()).getCodMesa());
+                        carritoRequest.setCodVendedor(((Almacen)spinnerAlmacenes.getSelectedItem()).getCodVendedor());
+                        carritoRequest.setCodCondicion(((CondicionPago) spinnerCondiciones.getSelectedItem()).getCode());
+                        carritoRequest.setCodLista(dispatchAddressSelected.getListaPrecios().getCode());
+                        carritoRequest.setCodTipoDoc(((TipoDoc)spinnerTipoDocs.getSelectedItem()).getCode());
+                        carritoRequest.setCodCanal(((Almacen)spinnerAlmacenes.getSelectedItem()).getCodCanal());
+                        carritoRequest.setCodRuta(dispatchAddressSelected.getRoute().getCode());
+                        carritoRequest.setCodCliente(customerSelected.getCode());
+                        ((ContenedorActivity) getActivity()).loadCarritoFragment(carritoRequest);
                     }
                 },150); //150 is in milliseconds
             }
@@ -164,24 +188,24 @@ private String codCliente;
             public void onResponse(Call<CustomerPedidoResponse> call, Response<CustomerPedidoResponse> response) {
                 StatusResponse statusResponse = response.body().getStatus();
                 if (statusResponse.getStatusCode().equals(Constants.STATUS.SUCCESS)) {
-                    Customer customer=response.body().getCustomer();
-                    DispatchAddress dispatchAddress=response.body().getDispatchAddress();
+                      customerSelected=response.body().getCustomer();
+                     dispatchAddressSelected=response.body().getDispatchAddress();
                     List<Almacen> almacenes=response.body().getAlmacenes();
                     List<CondicionPago> condiciones=response.body().getCondiciones();
                     List<TipoDoc> tipoDocs=response.body().getTipoDocs();
-                  tvDescCliente.setText(customer.getDescription());
-                  tvDirFacturacion.setText(customer.getAddress());
-                    tvDirDespacho.setText(dispatchAddress.getDescription());
-                    tvRuta.setText(dispatchAddress.getRoute().getCode()+"-"+dispatchAddress.getRoute().getDescription());
-                    tvListaPrecios.setText(dispatchAddress.getListaPrecios().getCode()+"-"+dispatchAddress.getListaPrecios().getDescription());
+                  tvDescCliente.setText(customerSelected.getDescription());
+                  tvDirFacturacion.setText(customerSelected.getAddress());
+                    tvDirDespacho.setText(dispatchAddressSelected.getDescription());
+                    tvRuta.setText(dispatchAddressSelected.getRoute().getCode()+"-"+dispatchAddressSelected.getRoute().getDescription());
+                    tvListaPrecios.setText(dispatchAddressSelected.getListaPrecios().getCode()+"-"+dispatchAddressSelected.getListaPrecios().getDescription());
 
-                    SpinnerAlmacenAdapter spinnerAlmacenAdapter=new SpinnerAlmacenAdapter(getActivity(),R.id.tvDescAlmacen,almacenes);
+                    AlmacenSpinner spinnerAlmacenAdapter=new AlmacenSpinner(getActivity(),almacenes);
                     spinnerAlmacenes.setAdapter(spinnerAlmacenAdapter);
 
-                    SpinneCondicionAdapter spinneCondicionAdapter=new SpinneCondicionAdapter(getActivity(),R.id.tvDescCondicion,condiciones);
+                    SpinneCondicionAdapter spinneCondicionAdapter=new SpinneCondicionAdapter(getActivity(),R.layout.list_condicion_spinner_item,condiciones);
                     spinnerCondiciones.setAdapter(spinneCondicionAdapter);
 
-                    SpinneTipoDocsAdapter spinneTipoDocsAdapter=new SpinneTipoDocsAdapter(getActivity(),R.id.tvDescTipoDoc,tipoDocs);
+                    SpinneTipoDocsAdapter spinneTipoDocsAdapter=new SpinneTipoDocsAdapter(getActivity(),R.layout.list_tipodocs_spinner_item,tipoDocs);
                     spinnerTipoDocs.setAdapter(spinneTipoDocsAdapter);
                     ((ContenedorActivity) getActivity()).showProgress(false);
 

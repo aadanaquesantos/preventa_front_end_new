@@ -19,9 +19,12 @@ import com.digital.inka.preventa.fragment.ComisionesFragment;
 import com.digital.inka.preventa.fragment.CustomerInfoFragment;
 import com.digital.inka.preventa.fragment.CustomerLocalListFragment;
 import com.digital.inka.preventa.fragment.DatosPedidoFragment;
+import com.digital.inka.preventa.fragment.DialogPrevisualizarFragment;
 import com.digital.inka.preventa.fragment.HomeFragment;
+import com.digital.inka.preventa.model.CarritoRequest;
 import com.digital.inka.preventa.model.Customer;
 import com.digital.inka.preventa.model.CustomerLocal;
+import com.digital.inka.preventa.model.Pedido;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 public class ContenedorActivity extends BaseActivity {
@@ -35,6 +38,8 @@ public class ContenedorActivity extends BaseActivity {
     CustomerInfoFragment customerInfoFragment=new CustomerInfoFragment();
     DatosPedidoFragment datosPedidoFragment=new DatosPedidoFragment();
     CarritoFragment carritoFragment=new CarritoFragment();
+
+    DialogPrevisualizarFragment dialogPrevisualizarFragment=new DialogPrevisualizarFragment();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -100,12 +105,13 @@ public class ContenedorActivity extends BaseActivity {
                     .commit();
         }
      }
-public void loadCarritoFragment(){
-    getSupportFragmentManager().popBackStackImmediate("DatosPedidoFragment", FragmentManager.POP_BACK_STACK_INCLUSIVE);
+public void loadCarritoFragment(CarritoRequest carritoRequest){
+    getSupportFragmentManager().popBackStackImmediate("CarritoFragment", FragmentManager.POP_BACK_STACK_INCLUSIVE);
+    CarritoFragment.newInstance(carritoRequest);
     if (carritoFragment.isAdded()) {
         getSupportFragmentManager().executePendingTransactions();
         getSupportFragmentManager()
-                .beginTransaction().replace(R.id.contenedorFragment, carritoFragment).addToBackStack("DatosPedidoFragment")  //VERIFICAR
+                .beginTransaction().replace(R.id.contenedorFragment, carritoFragment).addToBackStack("CarritoFragment")  //VERIFICAR
                 .commit();
 
     } else {
@@ -116,6 +122,27 @@ public void loadCarritoFragment(){
     }
 
 }
+
+    public void loadPrevisualizarFragment(Pedido pedido){
+        getSupportFragmentManager().popBackStackImmediate("DialogPrevisualizarFragment", FragmentManager.POP_BACK_STACK_INCLUSIVE);
+        DialogPrevisualizarFragment.newInstance(pedido);
+        if (dialogPrevisualizarFragment.isAdded()) {
+            getSupportFragmentManager().executePendingTransactions();
+            getSupportFragmentManager()
+                    .beginTransaction().replace(R.id.contenedorFragment, dialogPrevisualizarFragment).addToBackStack("DialogPrevisualizarFragment")  //VERIFICAR
+                    .commit();
+
+        } else {
+            getSupportFragmentManager()
+                    .beginTransaction()
+                    .add(android.R.id.content, dialogPrevisualizarFragment).addToBackStack(null)
+                    .commit();
+        }
+
+    }
+
+
+
     private Fragment recreateFragment(Fragment f)
     {
         try {

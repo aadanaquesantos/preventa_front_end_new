@@ -13,6 +13,7 @@ import android.view.ViewGroup;
 import android.view.WindowManager;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.appcompat.view.ActionMode;
 import androidx.appcompat.widget.AppCompatEditText;
@@ -24,11 +25,15 @@ import com.digital.inka.R;
 import com.digital.inka.preventa.activity.ContenedorActivity;
 import com.digital.inka.preventa.adapter.CustomerLocalListAdapter;
 import com.digital.inka.preventa.api.ApiRetrofitShort;
+import com.digital.inka.preventa.model.Constants;
 import com.digital.inka.preventa.model.CustomerLocal;
 import com.digital.inka.preventa.model.CustomerLocalListResponse;
+import com.digital.inka.preventa.model.StatusResponse;
+import com.digital.inka.preventa.model.SueldoResponse;
 import com.digital.inka.preventa.widget.LineItemDecoration;
 import com.google.android.material.bottomsheet.BottomSheetBehavior;
 import com.google.android.material.bottomsheet.BottomSheetDialog;
+import com.rabbil.toastsiliconlibrary.ToastSilicon;
 
 
 import java.util.HashMap;
@@ -126,37 +131,55 @@ public class CustomerLocalListFragment extends Fragment {
     }
 
     private void cargarClientes() {
-        dialog.show();
+        //dialog.show();
+        ((ContenedorActivity) getActivity()).showProgress(true);
         Map<String, String> dataConsulta = new HashMap<>();
         dataConsulta.put("usuario", "DIAZPJOS");
         Call<CustomerLocalListResponse> loginCall = ApiRetrofitShort.getInstance(BASE_URL).getCustomerService().getClientesByDia(dataConsulta);
         loginCall.enqueue(new Callback<CustomerLocalListResponse>() {
             @Override
             public void onResponse(Call<CustomerLocalListResponse> call, Response<CustomerLocalListResponse> response) {
-                List<CustomerLocal> items = response.body().getCustomerLocals();
-                //set data and list adapter
-                mAdapter = new CustomerLocalListAdapter(getContext(), items);
-                recyclerView.setAdapter(mAdapter);
+               // if(response.body()!=null){
+                //    StatusResponse statusResponse = response.body().getStatus();
+                    //if (statusResponse.getStatusCode().equals(Constants.STATUS.SUCCESS)) {
+                        List<CustomerLocal> items = response.body().getCustomerLocals();
+                        //set data and list adapter
+                        mAdapter = new CustomerLocalListAdapter(getContext(), items);
+                        recyclerView.setAdapter(mAdapter);
+                        mAdapter.setOnClickListener(new CustomerLocalListAdapter.OnClickListener() {
+                            @Override
+                            public void onItemClick(View view, CustomerLocal obj, int pos) {
 
-                mAdapter.setOnClickListener(new CustomerLocalListAdapter.OnClickListener() {
-                    @Override
-                    public void onItemClick(View view, CustomerLocal obj, int pos) {
+                            }
 
-                    }
+                            @Override
+                            public void onItemLongClick(View view, CustomerLocal obj, int pos) {
+                                showBottomSheetDialog(obj);
+                            }
+                        });
+                        ((ContenedorActivity) getActivity()).showProgress(false);// verificar
 
-                    @Override
-                    public void onItemLongClick(View view, CustomerLocal obj, int pos) {
-                        showBottomSheetDialog(obj);
-                    }
-                });
+//                    } else if (statusResponse.getStatusCode().equals(Constants.STATUS.WARNING)) {
+//                        ((ContenedorActivity) getActivity()).showProgress(false);
+//                        ToastSilicon.toastWarningOne(getActivity(),statusResponse.getStatusText(), Toast.LENGTH_SHORT);
+//
+//                    } else if (statusResponse.getStatusCode().equals(Constants.STATUS.ERROR)) {
+//                        ((ContenedorActivity) getActivity()).showProgress(false);
+//                        ToastSilicon.toastDangerOne(getActivity(),statusResponse.getStatusText(), Toast.LENGTH_SHORT);
+//                    }
+//
+//                }else{
+//                    ToastSilicon.toastDangerOne(getActivity(),"SERVICIO DETENIDO!!", Toast.LENGTH_SHORT);
+//                }
 
-                dialog.dismiss();
 
             }
 
             @Override
             public void onFailure(Call<CustomerLocalListResponse> call, Throwable t) {
-                System.out.println("");
+                ToastSilicon.toastWarningOne(getActivity(),t.getMessage(), Toast.LENGTH_SHORT);
+                ((ContenedorActivity) getActivity()).showProgress(false);
+
             }
         });
     }

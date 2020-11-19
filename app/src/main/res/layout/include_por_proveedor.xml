@@ -11,9 +11,8 @@
      android:layout_width="wrap_content"
      android:layout_height="wrap_content"
      android:layout_margin="@dimen/_12sdp"
-     android:elevation="@dimen/_5sdp"
-     app:cardCornerRadius="@dimen/_10sdp"
-     app:cardElevation="@dimen/_10sdp">
+     app:cardCornerRadius="@dimen/_5sdp"
+     app:cardElevation="@dimen/_5sdp">
 
   <androidx.cardview.widget.CardView
       android:id="@+id/cvCategoria"

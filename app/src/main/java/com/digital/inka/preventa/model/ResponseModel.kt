@@ -8,8 +8,11 @@ data class Product(
         var code:String,
         var description:String,
         var uri:String,
-        var price:Double,
-        var isBonif:Boolean
+        var priceBase:Double,
+        var priceSugerido:Double,
+        var um:String,
+        var isBonif:Boolean,
+        var isSugerido:Boolean
 
 )
 data class ProductListResponse(
@@ -171,7 +174,7 @@ data class MenuDashboard(
 
 
 data class StatusResponse(
-    var statusCode: String = "",
+    var statusCode: Integer ,
     var statusText: String = ""
   )
 
@@ -197,7 +200,16 @@ data class Almacen(
         val description: String,
         val codLocalidad:String,
         val codMesa:String,
-        val codEmpresa:String
+        val codEmpresa:String,
+        val codSede:String,
+        val codCanal:String,
+        val codVendedor:String
+)
+data class  DisponiblePrecioResponse(
+        val disponible:Double,
+        val precioBase:Double,
+        val precioSugerido:Double,
+        val status: StatusResponse
 )
 
 data class AlmacenListResponse(
@@ -226,6 +238,43 @@ data class ListaPrecios(
         val code:String,
         var description:String
 )
+
+data class Pedido(
+        var usuario:String,
+        var codEmpresa:String,
+        var codSede:String,
+        var codAlmacen:String,
+        var codLocalidad:String,
+        var codMesa:String,
+        var codVendedor:String,
+        var codCondicion:String,
+        var codListaPrecios: String,
+        var codLocal:String,
+        var codTipoDoc:String,
+        var codCanal:String,
+        var codRuta:String,
+        var codCliente:String,
+        var totalImporte:Double,
+        var totalDescuentos:Double,
+        var totalIgv:Double,
+        var totalPercepcion:Double,
+        var totalFlete:Double,
+        var detallePedidos:List<DetallePedido>
+)
+
+  data class  DetallePedido(
+         var product:Product,
+         var importeTotal:Double,
+         var importeIgv:Double,
+         var importePercepcion:Double,
+         var importeDescuentos:Double,
+         var cantidad:Double
+  )
+data class PedidoResponse(
+        var pedido:Pedido,
+        var status: StatusResponse
+)
+
 
 
 

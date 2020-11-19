@@ -4,6 +4,7 @@ package com.digital.inka.preventa.api;
 
 
 import com.digital.inka.preventa.service.CustomerService;
+import com.digital.inka.preventa.service.PedidoService;
 import com.digital.inka.preventa.service.ProductService;
 import com.digital.inka.preventa.service.UserService;
 
@@ -27,6 +28,7 @@ public class ApiRetrofitShort {
     private CustomerService customerService;
     private UserService userService;
     private ProductService productService;
+    private PedidoService pedidoService;
 
 
     public static ApiRetrofitShort getInstance(String BASE_URL) {
@@ -68,6 +70,7 @@ public class ApiRetrofitShort {
         this.customerService = mRetrofit.create(CustomerService.class);
         this.userService=mRetrofit.create(UserService.class);
         this.productService=mRetrofit.create(ProductService.class);
+        this.pedidoService=mRetrofit.create(PedidoService.class);
 
     }
 
@@ -81,5 +84,9 @@ public class ApiRetrofitShort {
 
     public ProductService getProductService() {
         return productService;
+    }
+
+    public PedidoService getPedidoService() {
+        return pedidoService;
     }
 }

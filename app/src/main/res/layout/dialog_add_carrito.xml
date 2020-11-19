@@ -1,75 +1,48 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@android:color/white"
     android:fitsSystemWindows="true"
     android:orientation="vertical">
+<!--<include-->
+<!--    android:id="@+id/customToolbar"-->
+<!--    layout="@layout/include_toolbar_dialog_layout"  />-->
+<!--    <com.google.android.material.appbar.AppBarLayout-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="?attr/actionBarSize">-->
 
-    <com.google.android.material.appbar.AppBarLayout
-        android:layout_width="match_parent"
-        android:layout_height="?attr/actionBarSize">
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="?attr/actionBarSize"
-            android:orientation="horizontal">
+<!--        <androidx.constraintlayout.widget.ConstraintLayout-->
+<!--            android:id="@+id/linearLayout2"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="?attr/actionBarSize">-->
 
-            <ImageButton
-                android:id="@+id/bt_close"
-                android:layout_width="?attr/actionBarSize"
-                android:layout_height="?attr/actionBarSize"
-                android:background="?attr/selectableItemBackgroundBorderless"
-                android:tint="@android:color/white"
-                app:srcCompat="@drawable/icon_carrito" />
+<!--            &lt;!&ndash;            <ImageButton&ndash;&gt;-->
+<!--            &lt;!&ndash;                android:id="@+id/bt_close"&ndash;&gt;-->
+<!--            &lt;!&ndash;                android:layout_width="?attr/actionBarSize"&ndash;&gt;-->
+<!--            &lt;!&ndash;                android:layout_height="?attr/actionBarSize"&ndash;&gt;-->
+<!--            &lt;!&ndash;                android:background="?attr/selectableItemBackgroundBorderless"&ndash;&gt;-->
+<!--            &lt;!&ndash;                android:tint="@android:color/white"&ndash;&gt;-->
+<!--            &lt;!&ndash;                app:srcCompat="@drawable/icon_carrito" />&ndash;&gt;-->
 
-            <TextView android:id="@+id/txtDialogTitleTelefono"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:layout_weight="1" android:text="ggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggg"
-                android:gravity="center_vertical"
-                android:textSize="@dimen/_10sdp"
-                android:textAppearance="@style/Base.TextAppearance.AppCompat.Title"
-                android:textColor="@android:color/white" />
-
-
-            <ImageButton
-                android:id="@+id/bt_cerrar"
-                android:layout_width="?attr/actionBarSize"
-                android:layout_height="?attr/actionBarSize"
-                android:background="?attr/selectableItemBackgroundBorderless"
-                 app:srcCompat="@drawable/ic_close_gray_24dp" />
-
-        </LinearLayout>
-
-<!--        <LinearLayout   android:gravity="center"-->
-<!--            android:layout_width="wrap_content" android:layout_gravity="center"-->
-<!--            android:layout_height="match_parent"-->
-<!--            android:orientation="horizontal">-->
-
-<!--            <ImageButton-->
-<!--                android:id="@+id/bt_close"-->
-<!--                android:layout_width="?attr/actionBarSize"-->
-<!--                android:layout_height="?attr/actionBarSize"-->
-<!--                android:background="?attr/selectableItemBackgroundBorderless"-->
-<!--                android:tint="@android:color/white"-->
-<!--                app:srcCompat="@drawable/celular" />-->
-
-<!--            <TextView android:id="@+id/txtDialogTitleTelefono"-->
-<!--                android:layout_width="wrap_content"-->
-<!--                android:layout_height="match_parent"-->
-<!--                android:layout_weight="1"-->
-<!--                android:gravity="center_vertical"-->
-
-<!--                android:textAppearance="@style/Base.TextAppearance.AppCompat.Title"-->
-<!--                android:textColor="@android:color/white" />-->
+<!--            &lt;!&ndash;            <TextView android:id="@+id/txtDialogTitleTelefono"&ndash;&gt;-->
+<!--            &lt;!&ndash;                android:layout_width="wrap_content"&ndash;&gt;-->
+<!--            &lt;!&ndash;                android:layout_height="match_parent"&ndash;&gt;-->
+<!--            &lt;!&ndash;                android:layout_weight="1" android:text="Sugerido de compra"&ndash;&gt;-->
+<!--            &lt;!&ndash;                android:gravity="center_vertical"&ndash;&gt;-->
+<!--            &lt;!&ndash;                android:textSize="@dimen/_10sdp"&ndash;&gt;-->
+<!--            &lt;!&ndash;                android:textAppearance="@style/Base.TextAppearance.AppCompat.Title"&ndash;&gt;-->
+<!--            &lt;!&ndash;                android:textColor="@android:color/white" />&ndash;&gt;-->
 
 
-<!--        </LinearLayout>-->
+    <!--        </androidx.constraintlayout.widget.ConstraintLayout>-->
 
-    </com.google.android.material.appbar.AppBarLayout>
 
-    <androidx.core.widget.NestedScrollView
+<!--    </com.google.android.material.appbar.AppBarLayout>-->
+
+    <ScrollView
         android:id="@+id/nested_scroll_view"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -80,68 +53,303 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical">
-            <View
+
+            <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
-                android:layout_height="10dp"  />
+                android:layout_height="wrap_content">
 
-            <TextView android:textAlignment="center"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content" android:text="jj"/>
-
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="1dp"  />
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:padding="@dimen/spacing_large">
-
-                <EditText
-                    android:id="@+id/etNroTelefono"  android:inputType="phone"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:hint="Ingrese número de Teléfono"  />
-
-
-
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="@dimen/spacing_large" />
-
-
-
-
-                <LinearLayout  android:gravity="center" android:layout_gravity="center"
+                <ImageButton
+                    android:id="@+id/bt_cerrar"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:orientation="vertical">
-                    <androidx.appcompat.widget.AppCompatButton
-                        android:id="@+id/bt_continuar"
-                        android:drawableRight="@drawable/icon_carrito"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="continuar" />
+                    android:layout_marginTop="8dp"
+                    android:background="?attr/selectableItemBackgroundBorderless"
+                    app:layout_constraintBottom_toTopOf="@+id/rvSugeridos"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/textView7"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:srcCompat="@drawable/ic_close_gray_24dp" />
 
-                <androidx.appcompat.widget.AppCompatButton
-                    android:id="@+id/bt_submit"
-                    android:drawableRight="@drawable/circle_product"
-                    android:layout_width="wrap_content" android:theme="@style/MaterialButtonStyle.Icon"
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/rvSugeridos"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                     android:text="GUARDAR Y CONTINUAR" />
+                    android:layout_marginStart="8dp"
+                    android:layout_marginLeft="8dp"
+                    android:layout_marginEnd="8dp"
+                    android:layout_marginRight="8dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.0"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/textView7" />
 
+                <TextView
+                    android:id="@+id/textView7"
+                    style="@style/styleSubTitleHome"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginLeft="8dp"
+                    android:layout_marginTop="8dp"
+                    android:text="Sugerido Compra"
+                    app:layout_constraintBottom_toTopOf="@+id/rvSugeridos"
+                    app:layout_constraintEnd_toStartOf="@+id/bt_cerrar"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintVertical_bias="0.258" />
 
-                </LinearLayout>
+                <TextView
+                    android:id="@+id/textView16"
+                    style="@style/styleSubTitleHome"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginLeft="8dp"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginEnd="8dp"
+                    android:layout_marginRight="8dp"
+                    android:text="Datos del Artículo"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/rvSugeridos" />
 
+                <ImageView
+                    android:id="@+id/imageView25"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginLeft="8dp"
+                    android:layout_marginTop="32dp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/textView16"
+                    app:srcCompat="@drawable/icon_articulo" />
 
+                <TextView
+                    android:id="@+id/textView18"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginLeft="8dp"
+                    android:layout_marginTop="32dp"
+                    android:text="Artículo"
+                    android:textSize="14sp"
+                    app:layout_constraintEnd_toStartOf="@+id/etSearchArticulo"
+                    app:layout_constraintStart_toEndOf="@+id/imageView25"
+                    app:layout_constraintTop_toBottomOf="@+id/textView16" />
 
+                <EditText
+                    android:id="@+id/etSearchArticulo"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="4dp"
+                    android:layout_marginLeft="4dp"
+                    android:layout_marginTop="24dp"
+                    android:layout_marginEnd="8dp"
+                    android:layout_marginRight="8dp"
+                    android:ems="10"
+                    android:inputType="textPersonName"
+                    android:textSize="8dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.0"
+                    app:layout_constraintStart_toEndOf="@+id/textView18"
+                    app:layout_constraintTop_toBottomOf="@+id/textView16" />
 
+                <ImageView
+                    android:id="@+id/imageView26"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginLeft="8dp"
+                    android:layout_marginTop="32dp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/etSearchArticulo"
+                    app:srcCompat="@drawable/icon_dispoible" />
 
-            </LinearLayout>
+                <TextView
+                    android:id="@+id/textView20"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginLeft="8dp"
+                    android:layout_marginTop="32dp"
+                    android:text="Disponible}"
+                    app:layout_constraintEnd_toStartOf="@+id/tvDisponible"
+                    app:layout_constraintStart_toEndOf="@+id/imageView26"
+                    app:layout_constraintTop_toBottomOf="@+id/etSearchArticulo" />
 
+                <TextView
+                    android:id="@+id/tvDisponible"
+                    style="@style/normalLabelBold"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginLeft="8dp"
+                    android:layout_marginTop="32dp"
+                    android:layout_marginEnd="8dp"
+                    android:layout_marginRight="8dp"
+                    android:gravity="right"
+                    android:text="TextView"
+                    android:textColor="@color/material_light_blue_500"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/textView20"
+                    app:layout_constraintTop_toBottomOf="@+id/etSearchArticulo" />
+
+                <ImageView
+                    android:id="@+id/imageView27"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginLeft="8dp"
+                    android:layout_marginTop="32dp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/tvDisponible"
+                    app:srcCompat="@drawable/icon_precio" />
+
+                <TextView
+                    android:id="@+id/textView24"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginLeft="8dp"
+                    android:layout_marginTop="32dp"
+                    android:layout_marginEnd="32dp"
+                    android:layout_marginRight="32dp"
+                    android:text="Precio"
+                    app:layout_constraintEnd_toStartOf="@+id/tvPrecio"
+                    app:layout_constraintStart_toEndOf="@+id/imageView27"
+                    app:layout_constraintTop_toBottomOf="@+id/tvDisponible" />
+
+                <TextView
+                    android:id="@+id/tvPrecio"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginLeft="8dp"
+                    android:layout_marginTop="32dp"
+                    android:layout_marginEnd="8dp"
+                    android:layout_marginRight="8dp"
+                    android:gravity="right"
+                    android:text="TextView"
+                    android:textColor="@color/green_500"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/textView24"
+                    app:layout_constraintTop_toBottomOf="@+id/tvDisponible" />
+
+                <ImageView
+                    android:id="@+id/imageView28"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginLeft="8dp"
+                    android:layout_marginTop="32dp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/tvPrecio"
+                    app:srcCompat="@drawable/icon_cantidad" />
+
+                <TextView
+                    android:id="@+id/textView28"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginLeft="8dp"
+                    android:layout_marginTop="32dp"
+                    android:text="Cantidad"
+                    app:layout_constraintStart_toEndOf="@+id/imageView28"
+                    app:layout_constraintTop_toBottomOf="@+id/tvPrecio" />
+
+                <EditText
+                    android:id="@+id/etCantidad"
+                    android:layout_width="50dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="68dp"
+                    android:layout_marginLeft="68dp"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginEnd="4dp"
+                    android:layout_marginRight="4dp"
+                    android:ems="10"
+                    android:inputType="number"
+                    app:layout_constraintEnd_toStartOf="@+id/tvUnidadMedida"
+                    app:layout_constraintStart_toEndOf="@+id/textView28"
+                    app:layout_constraintTop_toBottomOf="@+id/tvPrecio" />
+
+                <ImageView
+                    android:id="@+id/imageView29"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="32dp"
+                    android:layout_marginLeft="32dp"
+                    android:layout_marginTop="32dp"
+                    android:layout_marginEnd="4dp"
+                    android:layout_marginRight="4dp"
+                    app:layout_constraintEnd_toStartOf="@+id/etCantidad"
+                    app:layout_constraintStart_toEndOf="@+id/textView28"
+                    app:layout_constraintTop_toBottomOf="@+id/tvPrecio"
+                    app:srcCompat="@drawable/icon_mas" />
+
+                <ImageView
+                    android:id="@+id/imageView30"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="4dp"
+                    android:layout_marginLeft="4dp"
+                    android:layout_marginTop="32dp"
+                    android:layout_marginEnd="64dp"
+                    android:layout_marginRight="64dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/tvUnidadMedida"
+                    app:layout_constraintTop_toBottomOf="@+id/tvPrecio"
+                    app:srcCompat="@drawable/icon_menos" />
+
+                <TextView
+                    android:id="@+id/tvUnidadMedida"
+                    style="@style/normalLabelBold"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="4dp"
+                    android:layout_marginLeft="4dp"
+                    android:layout_marginTop="32dp"
+                    android:layout_marginEnd="8dp"
+                    android:layout_marginRight="8dp"
+                    android:text="BLSA"
+                    app:layout_constraintEnd_toStartOf="@+id/imageView30"
+                    app:layout_constraintStart_toEndOf="@+id/etCantidad"
+                    app:layout_constraintTop_toBottomOf="@+id/tvPrecio" />
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btnAddCarrito"
+                    style="@style/MaterialButtonStyle.Drawable"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="32dp"
+                    android:text="Agregar"
+                    app:icon="@drawable/icon_carrito"
+                    app:iconGravity="textStart"
+                    app:iconPadding="@dimen/_10sdp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/etCantidad" />
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/rvArticulos"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginLeft="8dp"
+                    android:layout_marginEnd="8dp"
+                    android:layout_marginRight="8dp"
+                    android:background="#FFFFFF"
+                    android:scrollbars="vertical"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="1.0"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/etSearchArticulo"
+                    app:layout_constraintVertical_bias="0.0" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
         </LinearLayout>
 
-    </androidx.core.widget.NestedScrollView>
+    </ScrollView>
 
 </LinearLayout>

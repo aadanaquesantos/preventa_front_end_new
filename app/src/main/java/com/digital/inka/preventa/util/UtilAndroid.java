@@ -21,11 +21,14 @@ import androidx.fragment.app.FragmentTransaction;
 
 
 import java.net.NetworkInterface;
+import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Collections;
 import java.util.Date;
 import java.util.List;
+import java.util.UUID;
 
 /**
  * Created by __Adrian__ on 13/03/2019.
@@ -77,7 +80,17 @@ public class UtilAndroid {
         String resultado = sdf.format(new Date());
             return resultado;
     }
-
+    public static String generarCorrelativo(String usuario) {
+//        return  new Date()+UUID.randomUUID().toString();
+        DateFormat dateFormat = new SimpleDateFormat("yyddmm");
+        Date date = new Date();
+        String dt=String.valueOf(dateFormat.format(date));
+        Calendar cal = Calendar.getInstance();
+        SimpleDateFormat time = new SimpleDateFormat("HHmm");
+        String tm= String.valueOf(time.format(new Date()));//time in 24 hour format
+        String id= dt+tm;
+       return usuario+id;
+    }
 
 
     public static boolean estaInstaladaAplicacion(String nombrePaquete, Context context) {

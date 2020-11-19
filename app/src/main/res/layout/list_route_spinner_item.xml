@@ -9,11 +9,12 @@
 
     <TextView
         android:id="@+id/tvDescRoute"
+        style="@style/tvValueLabel"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
         android:layout_marginBottom="8dp"
-        android:fontFamily="@font/poppins_light"
+        android:gravity="center"
         android:text="tvDescPeriodo"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
