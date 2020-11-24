@@ -2,6 +2,8 @@ package com.digital.inka.preventa.fragment;
 
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
 import android.os.Handler;
@@ -58,6 +60,12 @@ public class MenuAvanceVentasFragment extends Fragment {
     }
 
     @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+
+    }
+
+    @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
@@ -101,6 +109,7 @@ public class MenuAvanceVentasFragment extends Fragment {
                         public void run() {
                             progressBar.setProgress(pStatus.intValue());
                             txtProgress.setText(UtilAndroid.round(pStatus, 3) + "%");
+
 
                         }
                     });

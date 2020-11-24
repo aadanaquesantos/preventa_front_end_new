@@ -5,6 +5,7 @@ import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import androidx.annotation.Nullable;
@@ -60,7 +61,8 @@ public class HomeFragment extends Fragment {
     MenuVentaAdapter menuVentaAdapter;
     MenuSueldoAdapter menuSueldoAdapter;
     private ConstraintLayout lyt_parent;
-
+    private ProgressBar pbLoadVentas;
+    private ProgressBar pbLoadSueldos;
     public HomeFragment() {
         // Required empty public constructor
     }
@@ -104,6 +106,8 @@ public class HomeFragment extends Fragment {
         rvMenuVenta=root.findViewById(R.id.rvMenuVentas);
         rvMenuSueldo=root.findViewById(R.id.rvMenuSueldos);
         lyt_parent=root.findViewById(R.id.lyt_parent);
+        pbLoadVentas=root.findViewById(R.id.pbLoadVentas);
+        pbLoadSueldos=root.findViewById(R.id.pbLoadSueldos);
         return root;
     }
 
@@ -158,6 +162,8 @@ public class HomeFragment extends Fragment {
         menuVentas.add(new MenuDashboard("02","Hamburguesa mix","Doble carne con queso","$",new Double(12.58),R.drawable.hamburguesa_mix_img));
         menuVentaAdapter=new MenuVentaAdapter(getContext(),menuVentas,sueldoResponse,getChildFragmentManager());
         rvMenuVenta.setAdapter(menuVentaAdapter);
+        pbLoadVentas.setVisibility(View.GONE);
+        rvMenuVenta.setVisibility(View.VISIBLE);
 
         rvMenuSueldo.setHasFixedSize(true);
         rvMenuSueldo.setLayoutManager(new LinearLayoutManager(getContext(),LinearLayoutManager.HORIZONTAL,false));
@@ -169,6 +175,8 @@ public class HomeFragment extends Fragment {
 
         menuSueldoAdapter=new MenuSueldoAdapter(getContext(),menuSueldos,sueldoResponse,getChildFragmentManager());
         rvMenuSueldo.setAdapter(menuSueldoAdapter);
+        pbLoadSueldos.setVisibility(View.GONE);
+        rvMenuSueldo.setVisibility(View.VISIBLE);
         lyt_parent.setVisibility(View.VISIBLE);
     }
 

@@ -98,7 +98,7 @@ public class DireccionListAdapter extends RecyclerView.Adapter<DireccionListAdap
 
     private void displayImage(ViewHolder holder, DispatchAddress direccion) {
       if (direccion.getStatusLocal().equals("A")) {
-          holder.ivStatus.setColorFilter(ContextCompat.getColor(ctx.getApplicationContext(), R.color.green_500), android.graphics.PorterDuff.Mode.MULTIPLY);
+          holder.ivStatus.setColorFilter(ContextCompat.getColor(ctx.getApplicationContext(), R.color.green_A200), android.graphics.PorterDuff.Mode.MULTIPLY);
 
       }else if (direccion.getStatusLocal().equals("I")){
           holder.ivStatus.setColorFilter(ContextCompat.getColor(ctx.getApplicationContext(), R.color.red_500), android.graphics.PorterDuff.Mode.MULTIPLY);

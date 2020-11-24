@@ -8,6 +8,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -30,6 +31,7 @@ import com.digital.inka.preventa.model.PedidoResponse;
 import com.digital.inka.preventa.model.StatusResponse;
 import com.digital.inka.preventa.util.SessionUsuario;
 import com.google.android.material.button.MaterialButton;
+import com.rabbil.toastsiliconlibrary.ToastSilicon;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -95,22 +97,24 @@ public class CarritoFragment extends DialogFragment  implements DialogAddCarrito
          tvTotal=view.findViewById(R.id.tvTotal);
          rvCarrito=view.findViewById(R.id.rvCarrito);
          callbackAddCarrito=this;
-         DialogAddCarritoFragment.newInstance(carritoRequestStatic);
-        DialogAddCarritoFragment dialogAddCarritoFragment = new DialogAddCarritoFragment();
-        dialogAddCarritoFragment.setCallbackAddCarrito(callbackAddCarrito);
-        FragmentTransaction ft = getChildFragmentManager().beginTransaction();
-        Fragment prev = getChildFragmentManager().findFragmentByTag("dialog");
-        if (prev != null) {
-            ft.remove(prev);
-        }
-        ft.addToBackStack(null);
+//         DialogAddCarritoFragment.newInstance(carritoRequestStatic);
+//        DialogAddCarritoFragment dialogAddCarritoFragment = new DialogAddCarritoFragment();
+//        dialogAddCarritoFragment.setCallbackAddCarrito(callbackAddCarrito);
+//        FragmentTransaction ft = getChildFragmentManager().beginTransaction();
+//        Fragment prev = getChildFragmentManager().findFragmentByTag("dialog");
+//        if (prev != null) {
+//            ft.remove(prev);
+//        }
+//        ft.addToBackStack(null);
 
 
             if(sessionUsuario.getCarritoList()==null){
-                dialogAddCarritoFragment.show(ft, "dialog");
+               // dialogAddCarritoFragment.show(ft, "dialog");
+                ((ContenedorActivity) getActivity()).loadAddCarritoFragment(carritoRequestStatic,callbackAddCarrito);
             }else{
                 if(sessionUsuario.getCarritoList().getListCarrito().isEmpty()){
-                    dialogAddCarritoFragment.show(ft, "dialog");
+                 //   dialogAddCarritoFragment.show(ft, "dialog");
+                    ((ContenedorActivity) getActivity()).loadAddCarritoFragment(carritoRequestStatic,callbackAddCarrito);
                 }else{
                     rvCarrito.setHasFixedSize(true);
                     rvCarrito.setLayoutManager(new LinearLayoutManager(getContext(),LinearLayoutManager.VERTICAL,false));
@@ -129,16 +133,17 @@ public class CarritoFragment extends DialogFragment  implements DialogAddCarrito
         btnArticulos.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                DialogAddCarritoFragment.newInstance(carritoRequestStatic);
-                DialogAddCarritoFragment dialogAddCarritoFragment = new DialogAddCarritoFragment();
-                dialogAddCarritoFragment.setCallbackAddCarrito(callbackAddCarrito);
-                FragmentTransaction ft = getChildFragmentManager().beginTransaction();
-                Fragment prev = getChildFragmentManager().findFragmentByTag("dialog");
-                if (prev != null) {
-                    ft.remove(prev);
-                }
-                ft.addToBackStack(null);
-                dialogAddCarritoFragment.show(ft, "dialog");
+               // DialogAddCarritoFragment.newInstance(carritoRequestStatic);
+//                DialogAddCarritoFragment dialogAddCarritoFragment = new DialogAddCarritoFragment();
+//                dialogAddCarritoFragment.setCallbackAddCarrito(callbackAddCarrito);
+//                FragmentTransaction ft = getChildFragmentManager().beginTransaction();
+//                Fragment prev = getChildFragmentManager().findFragmentByTag("dialog");
+//                if (prev != null) {
+//                    ft.remove(prev);
+//                }
+//                ft.addToBackStack(null);
+//                dialogAddCarritoFragment.show(ft, "dialog");
+                ((ContenedorActivity) getActivity()).loadAddCarritoFragment(carritoRequestStatic,callbackAddCarrito);
             }
         });
 
@@ -179,10 +184,13 @@ public class CarritoFragment extends DialogFragment  implements DialogAddCarrito
                     ((ContenedorActivity) getActivity()).loadPrevisualizarFragment(pedidoResponse.getPedido());
 
                 } else if (statusResponse.getStatusCode().equals(Constants.STATUS.WARNING)) {
+                    ((ContenedorActivity) getActivity()).showProgress(false);
+                    ToastSilicon.toastWarningOne(getActivity(),statusResponse.getStatusText(), Toast.LENGTH_SHORT);
 
 
                 } else if (statusResponse.getStatusCode().equals(Constants.STATUS.ERROR)) {
-
+                    ((ContenedorActivity) getActivity()).showProgress(false);
+                    ToastSilicon.toastDangerOne(getActivity(),statusResponse.getStatusText(), Toast.LENGTH_SHORT);
 
                 }
 

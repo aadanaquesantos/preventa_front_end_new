@@ -195,10 +195,13 @@ public class DialogAddCarritoFragment extends DialogFragment {
 
                 } else if (statusResponse.getStatusCode().equals(Constants.STATUS.WARNING)) {
 
+                    ((ContenedorActivity) getActivity()).showProgress(false);
+                    ToastSilicon.toastWarningOne(getActivity(),statusResponse.getStatusText(), Toast.LENGTH_SHORT);
 
                 } else if (statusResponse.getStatusCode().equals(Constants.STATUS.ERROR)) {
 
-
+                    ((ContenedorActivity) getActivity()).showProgress(false);
+                    ToastSilicon.toastDangerOne(getActivity(),statusResponse.getStatusText(), Toast.LENGTH_SHORT);
                 }
 
 

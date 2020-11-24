@@ -19,6 +19,7 @@ import com.digital.inka.preventa.fragment.ComisionesFragment;
 import com.digital.inka.preventa.fragment.CustomerInfoFragment;
 import com.digital.inka.preventa.fragment.CustomerLocalListFragment;
 import com.digital.inka.preventa.fragment.DatosPedidoFragment;
+import com.digital.inka.preventa.fragment.DialogAddCarritoFragment;
 import com.digital.inka.preventa.fragment.DialogPrevisualizarFragment;
 import com.digital.inka.preventa.fragment.HomeFragment;
 import com.digital.inka.preventa.model.CarritoRequest;
@@ -40,6 +41,7 @@ public class ContenedorActivity extends BaseActivity {
     CarritoFragment carritoFragment=new CarritoFragment();
 
     DialogPrevisualizarFragment dialogPrevisualizarFragment=new DialogPrevisualizarFragment();
+    DialogAddCarritoFragment dialogAddCarritoFragment=new DialogAddCarritoFragment();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -105,6 +107,29 @@ public class ContenedorActivity extends BaseActivity {
                     .commit();
         }
      }
+
+
+
+    public void loadAddCarritoFragment(CarritoRequest carritoRequest, DialogAddCarritoFragment.CallbackAddCarrito callbackAddCarrito) {
+
+       //getSupportFragmentManager().popBackStackImmediate(null, FragmentManager.POP_BACK_STACK_INCLUSIVE);
+       DialogAddCarritoFragment.newInstance(carritoRequest);
+        dialogAddCarritoFragment.setCallbackAddCarrito(callbackAddCarrito);
+        if ( dialogAddCarritoFragment.isAdded()) {
+            getSupportFragmentManager().executePendingTransactions();
+            getSupportFragmentManager()
+                    .beginTransaction()
+                    .replace(R.id.contenedorFragment, dialogAddCarritoFragment).addToBackStack("CarritoFragment")  //VERIFICAR
+                    .commit();
+
+        } else {
+            getSupportFragmentManager()
+                    .beginTransaction()
+                    .add(android.R.id.content, dialogAddCarritoFragment).addToBackStack("CarritoFragment")
+                    .commit();
+        }
+    }
+
 public void loadCarritoFragment(CarritoRequest carritoRequest){
     getSupportFragmentManager().popBackStackImmediate("CarritoFragment", FragmentManager.POP_BACK_STACK_INCLUSIVE);
     CarritoFragment.newInstance(carritoRequest);

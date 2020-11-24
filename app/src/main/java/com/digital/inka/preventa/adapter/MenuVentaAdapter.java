@@ -7,6 +7,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -32,12 +33,13 @@ public class MenuVentaAdapter extends RecyclerView.Adapter<MenuVentaAdapter.Menu
     SueldoResponse sueldoResponse;
     FragmentManager fragmentManager;
 
-    public MenuVentaAdapter(Context context, ArrayList<MenuDashboard> menuVentaList, SueldoResponse sueldoResponse,FragmentManager fragmentManager) {
+
+    public MenuVentaAdapter(Context context, ArrayList<MenuDashboard> menuVentaList, SueldoResponse sueldoResponse, FragmentManager fragmentManager) {
         this.menuVentaList = menuVentaList;
         this.context=context;
         this.sueldoResponse=sueldoResponse;
         this.fragmentManager=fragmentManager;
-    }
+     }
 
     @NonNull
     @Override
